@@ -1,0 +1,19 @@
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"03-03-2021 20:18:17"}
+error: {"success":false,"message":"Something went wrong!"} {"timestamp":"03-03-2021 20:22:08"}
+error: {"success":false,"message":"Something went wrong!"} {"timestamp":"03-03-2021 20:30:25"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"03-03-2021 20:35:36"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"03-03-2021 20:37:30"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"603fc930a3efc6438ce6ce6d","firstName":"Saurabh","lastName":"Tripathi","email":"saurabh523@gmail.com","mobile":8654789120,"password":"$2b$10$1faUSAi6KKoT3isAuR9tZu2sqFcF28G2ClHk8wWy4IJFHtPL3Epme","__v":0},"code":200} {"timestamp":"03-03-2021 23:06:49"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"03-03-2021 23:28:48"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"603fd3f2a507764dfc6394a3","firstName":"Garima","lastName":"Singh","email":"garima523@gmail.com","mobile":8654781920,"password":"$2b$10$ZcCpBeeRk9F1kbdkvfYlPOivnRdJJlgJyIFQ/94EieAVOr7YrT3R.","__v":0},"code":200} {"timestamp":"03-03-2021 23:52:42"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"04-03-2021 10:54:06"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"04-03-2021 11:20:21"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"04-03-2021 11:24:54"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"604076389188df2b20012a05","firstName":"Garima","lastName":"Singh","email":"garima52@gmail.com","mobile":8654781920,"password":"$2b$10$o0XDwJ9nmwxs.njiw65JI.CIkDVscqe6Hqj.Y8Y684J4vjeVrpq3m","__v":0},"code":200} {"timestamp":"04-03-2021 11:25:04"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"04-03-2021 11:25:50"}
+error: {"success":false,"message":"Something went wrong!"} {"timestamp":"04-03-2021 12:25:13"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"04-03-2021 12:26:23"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"}]} {"timestamp":"04-03-2021 12:26:40"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"},{"value":"","msg":"lastName is Required","param":"lastName","location":"body"},{"value":"","msg":"lastName must be only in alphabets!","param":"lastName","location":"body"},{"value":"","msg":"lastName requires more than 2 characters!","param":"lastName","location":"body"},{"value":"","msg":"enter valid number","param":"mobile","location":"body"},{"value":"","msg":"mobile number is required","param":"mobile","location":"body"},{"value":"","msg":"mobile number should consist of 10 digits","param":"mobile","location":"body"},{"value":"","msg":"number should belong to INDIA","param":"mobile","location":"body"}]} {"timestamp":"04-03-2021 12:30:53"}
+error: {"flag":false,"message":"Email does not exists!","code":404} {"timestamp":"04-03-2021 12:31:22"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"04-03-2021 12:31:34"}
