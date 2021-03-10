@@ -1,5 +1,5 @@
 const { buildCheckFunction, body, params } = require('express-validator');
-const check = buildCheckFunction(['headers', 'params']);
+const check = buildCheckFunction(["headers", "params"]);
 
 module.exports = {
     register: [
@@ -32,5 +32,25 @@ module.exports = {
             .trim()
             .notEmpty().withMessage('password is required')
             .isLength({ min: 5 }).withMessage('password should contain 5 characters')
+    ],
+
+    login: [
+        body('email')
+            .trim()
+            .isEmail().withMessage('Please enter valid email')
+            .notEmpty().withMessage('email is required'),
+
+        body('password')
+            .trim()
+            .notEmpty().withMessage('password is required')
+            .isLength({ min: 5 }).withMessage('password should contain 5 characters')
+    ],
+
+
+    forget:[
+        body("email")
+        .trim()
+        .notEmpty().withMessage("Email is Required!")
+        .isEmail().withMessage("Email is Invalid!!!"),
     ]
 }

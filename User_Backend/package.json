@@ -6,6 +6,8 @@
     "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.18",
+    "nodemailer": "^6.5.0",
+    "smtp": "^0.1.4",
     "winston": "^3.3.3"
   },
   "scripts": {

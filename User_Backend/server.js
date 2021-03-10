@@ -4,11 +4,9 @@ const app=express();
 
  const {InternalServerError}=require('./Middleware/httpStatusCode.json');
 const port=4000;
-const dotenv=require("dotenv");
+require('dotenv').config();
 
-dotenv.config();
 
-process.env.SECRET_KEY;
 const { infoLogger, errorLogger}=require('./Middleware/logger');
 app.use(express.json());
 

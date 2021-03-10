@@ -1,5 +1,6 @@
 let userService = require('../Service/userService');
-
+const statusCode = require('../Middleware/httpStatusCode.json')
+require('dotenv').config();
 const { infoLogger, errorLogger } = require('../Middleware/logger');
 const response = {};
 
@@ -15,7 +16,6 @@ class UserController {
 
     userRegistrationController = (req, res, next) => {
         try {
-
             userService.userRegistrationService(req.body, (error, data) => {
                 if (error) {
                     errorLogger.error(JSON.stringify(error));
@@ -47,6 +47,47 @@ class UserController {
             next(error)
         }
     }
+
+    userForgetPasswordController(req, res,next){
+        try {
+            userService.userForgetPasswordService(req.body)
+            .then((result) => {
+                response.flag = true;
+                response.message = result.message;
+                res.status(statusCode.OK).send(response);
+            }).catch((err) => {
+                response.flag = false;
+                response.data = err.message;
+                res.status(statusCode.BadRequest).send(response);
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    userResetPasswordController(req,res){
+        try{
+            console.log(req.body.password);
+            let password=req.body.password;
+            let email=req.decoded.email;                
+            //  console.log(email);
+            userService.userResetPasswordService(email,password)
+            .then((result)=>{
+                response.flag = true;
+                response.message = result.message;
+                res.status(statusCode.OK).send(response);
+            }).catch((err) => {
+                response.flag = false;
+                response.data = err.message;
+                res.status(statusCode.BadRequest).send(response);
+            });
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+
 }
 
 

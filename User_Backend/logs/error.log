@@ -17,3 +17,92 @@ error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","m
 error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"},{"value":"","msg":"lastName is Required","param":"lastName","location":"body"},{"value":"","msg":"lastName must be only in alphabets!","param":"lastName","location":"body"},{"value":"","msg":"lastName requires more than 2 characters!","param":"lastName","location":"body"},{"value":"","msg":"enter valid number","param":"mobile","location":"body"},{"value":"","msg":"mobile number is required","param":"mobile","location":"body"},{"value":"","msg":"mobile number should consist of 10 digits","param":"mobile","location":"body"},{"value":"","msg":"number should belong to INDIA","param":"mobile","location":"body"}]} {"timestamp":"04-03-2021 12:30:53"}
 error: {"flag":false,"message":"Email does not exists!","code":404} {"timestamp":"04-03-2021 12:31:22"}
 error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"04-03-2021 12:31:34"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"},{"value":"","msg":"lastName is Required","param":"lastName","location":"body"},{"value":"","msg":"lastName must be only in alphabets!","param":"lastName","location":"body"},{"value":"","msg":"lastName requires more than 2 characters!","param":"lastName","location":"body"},{"value":"","msg":"password is required","param":"password","location":"body"},{"value":"","msg":"password should contain 5 characters","param":"password","location":"body"}]} {"timestamp":"06-03-2021 01:32:10"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"password is required","param":"password","location":"body"},{"value":"","msg":"password should contain 5 characters","param":"password","location":"body"}]} {"timestamp":"06-03-2021 01:32:33"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"60428e8c48566b5da06c0c31","firstName":"Saurabh","lastName":"Tripathi","email":"tripathishivam.311@gmail.com","mobile":8965412574,"password":"$2b$10$SH/s5zEPbZUvgOQNV8XMPO4sEe/LqEIyURUa7PY37JvI7KuAz/sm6","__v":0},"code":200} {"timestamp":"06-03-2021 01:33:24"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"},{"value":"","msg":"lastName is Required","param":"lastName","location":"body"},{"value":"","msg":"lastName must be only in alphabets!","param":"lastName","location":"body"},{"value":"","msg":"lastName requires more than 2 characters!","param":"lastName","location":"body"}]} {"timestamp":"06-03-2021 12:41:48"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"60432b46d4d7126150e2a845","firstName":"Rishabh","lastName":"Pant","email":"rishab.311@gmail.com","mobile":8465164651,"password":"$2b$10$/sBwLbnZmmd1JDuKjAkku.YWPYGtb2OW9K75avYv.pFrtakwl0.iG","__v":0},"code":200} {"timestamp":"06-03-2021 12:42:07"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"06-03-2021 12:42:15"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"}]} {"timestamp":"06-03-2021 12:42:27"}
+error: {"flag":false,"message":"Email does not exists!","code":404} {"timestamp":"06-03-2021 12:43:04"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"06-03-2021 12:43:16"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"lastName is Required","param":"lastName","location":"body"},{"value":"","msg":"lastName must be only in alphabets!","param":"lastName","location":"body"},{"value":"","msg":"lastName requires more than 2 characters!","param":"lastName","location":"body"}]} {"timestamp":"08-03-2021 18:56:03"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"08-03-2021 18:56:17"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"08-03-2021 19:41:50"}
+error: {"success":false,"status":508,"message":"Unexpected token } in JSON at position 71"} {"timestamp":"08-03-2021 19:42:13"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"08-03-2021 19:55:58"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"08-03-2021 19:56:10"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"08-03-2021 19:56:37"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"08-03-2021 19:57:05"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"08-03-2021 19:57:28"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"6046345a5fd45b277cf958ec","firstName":"Geeta","lastName":"Phogat","email":"tripathishivam.31112@gmail.com","mobile":8651532513,"password":"$2b$10$QuCZLsvl34lSKAYsTspMveYraaeKMjawD8T46mN2xpWquwxNOE9NS","__v":0},"code":200} {"timestamp":"08-03-2021 19:57:39"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"},{"value":"","msg":"lastName is Required","param":"lastName","location":"body"},{"value":"","msg":"lastName must be only in alphabets!","param":"lastName","location":"body"},{"value":"","msg":"lastName requires more than 2 characters!","param":"lastName","location":"body"},{"value":"","msg":"enter valid number","param":"mobile","location":"body"},{"value":"","msg":"mobile number is required","param":"mobile","location":"body"},{"value":"","msg":"mobile number should consist of 10 digits","param":"mobile","location":"body"},{"value":"","msg":"number should belong to INDIA","param":"mobile","location":"body"}]} {"timestamp":"08-03-2021 19:58:03"}
+error: {"error":true,"message":"Unauthorized User"} {"timestamp":"09-03-2021 01:02:02"}
+error: {"error":true,"message":"Unauthorized User"} {"timestamp":"09-03-2021 01:07:34"}
+error: {"success":false,"status":508,"message":"Unexpected token } in JSON at position 77"} {"timestamp":"09-03-2021 01:49:58"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"6046f8ce78f5de333c0bb1de","firstName":"Arjun","lastName":"Jadhav","email":"arjun@gmail.com","mobile":8756254784,"password":"$2b$10$Y17KoWguC9uxnR65CsK0duAvwp12.L4eBi647pUX/4M2d4BRC/us6","__v":0},"code":200} {"timestamp":"09-03-2021 09:55:50"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 10:00:18"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 10:17:32"}
+error: {"error":true,"message":"Unauthorized User"} {"timestamp":"09-03-2021 11:20:15"}
+error: {"error":true,"message":"Unauthorized User"} {"timestamp":"09-03-2021 11:20:28"}
+error: {"error":true,"message":"Unauthorized User"} {"timestamp":"09-03-2021 11:20:31"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"60470d16be04611e24c30c89","firstName":"Arjun","lastName":"Jadhav","email":"arjun@gmail.com","mobile":8756254784,"password":"$2b$10$jnOBfzUCpGtiDhC1JbEnhuCbfCtL6IljJsFXBo/zmWkoZ3Vb3B/Gi","__v":0},"code":200} {"timestamp":"09-03-2021 11:22:22"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"},{"value":"","msg":"lastName is Required","param":"lastName","location":"body"},{"value":"","msg":"lastName must be only in alphabets!","param":"lastName","location":"body"},{"value":"","msg":"lastName requires more than 2 characters!","param":"lastName","location":"body"},{"value":"","msg":"enter valid number","param":"mobile","location":"body"},{"value":"","msg":"mobile number is required","param":"mobile","location":"body"},{"value":"","msg":"mobile number should consist of 10 digits","param":"mobile","location":"body"},{"value":"","msg":"number should belong to INDIA","param":"mobile","location":"body"},{"value":"","msg":"password is required","param":"password","location":"body"},{"value":"","msg":"password should contain 5 characters","param":"password","location":"body"}]} {"timestamp":"09-03-2021 11:22:55"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"60470eabe3b38a22cce2d5af","firstName":"Arjun","lastName":"Jadhav","email":"tripathishivam.311@gmail.com","mobile":8756254784,"password":"$2b$10$PDlAKWTVfwY7.7..tOb3K.SOnLk8f3/O69/TWiXqt6HJEYIjoxd1O","__v":0},"code":200} {"timestamp":"09-03-2021 11:29:07"}
+error: {"success":false,"status":508,"message":"Unexpected token } in JSON at position 60"} {"timestamp":"09-03-2021 11:29:33"}
+error: {"success":false,"status":508,"message":"next is not defined"} {"timestamp":"09-03-2021 11:30:54"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 11:32:17"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 11:32:25"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 11:32:36"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 11:32:54"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"6047102f113a2c19e4fc01e7","firstName":"Himanshu","lastName":"Gupta","email":"himanshu@12gmail.com","mobile":8765145698,"password":"$2b$10$7PNMA0d7dR/aAKPGXNLKO.R.NDk.eorMdjup1sqI9nqR0dYbAsLqW","__v":0},"code":200} {"timestamp":"09-03-2021 11:35:35"}
+error: {"success":true,"message":"Unauthorized User","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ3MTAyZjExM2EyYzE5ZTRmYzAxZTciLCJmaXJzdE5hbWUiOiJIaW1hbnNodSIsImxhc3ROYW1lIjoiR3VwdGEiLCJlbWFpbCI6ImhpbWFuc2h1QDEyZ21haWwuY29tIiwibW9iaWxlIjo4NzY1MTQ1Njk4LCJpYXQiOjE2MTUyNjk5ODMsImV4cCI6MTYxNTI3MjM4M30.FcpqbyzY-0BOnaG3lmXE5TRTu78bx_FN2eZmuVOgfcA","error":true} {"timestamp":"09-03-2021 11:36:57"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 11:39:16"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 11:48:19"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 17:23:31"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 17:23:33"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 17:23:52"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 17:27:05"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 17:27:42"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 17:29:02"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 17:33:22"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 20:42:48"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 20:44:25"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 21:23:51"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"09-03-2021 21:25:30"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:36:03"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:37:42"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:38:08"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:38:36"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:47:00"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:47:15"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:47:29"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:48:03"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:49:22"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:49:56"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:50:33"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 00:51:21"}
+error: {"success":false,"status":508,"message":"logger.error is not a function"} {"timestamp":"10-03-2021 01:07:24"}
+error: {"success":false,"status":508,"message":"logger.error is not a function"} {"timestamp":"10-03-2021 01:09:49"}
+error: {"success":false,"status":508,"message":"logger.error is not a function"} {"timestamp":"10-03-2021 01:09:52"}
+error: {"success":false,"status":508,"message":"logger.error is not a function"} {"timestamp":"10-03-2021 01:11:51"}
+error: {"success":false,"status":508,"message":"logger.error is not a function"} {"timestamp":"10-03-2021 01:12:23"}
+error: {"success":false,"status":508,"message":"logger.error is not a function"} {"timestamp":"10-03-2021 01:12:41"}
+error: {"flag":false,"message":"Email does not exists!","code":404} {"timestamp":"10-03-2021 10:44:19"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"6048565c0fc3fe3850552488","firstName":"Himanshu","lastName":"Gupta","email":"himanshu@12gmail.com","mobile":8765145698,"password":"$2b$10$I1L7azJmmKnRXRjeZ3GWsO8hnbXKFrzxaHrlzzqMPuXYbqyQGwzMe","__v":0},"code":200} {"timestamp":"10-03-2021 10:47:16"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"604858be53810438341fed77","firstName":"Himanshu","lastName":"Gupta","email":"himanshu@12gmail.com","mobile":8765145698,"password":"$2b$10$EqAKgzwgsoH263IhkvrZheoMseygsLQxwkSQDYFBqnpzeNHP/dQVO","__v":0},"code":200} {"timestamp":"10-03-2021 10:57:26"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"6048594953810438341fed78","firstName":"Himanshu","lastName":"Gupta","email":"tripathishivam.311@gmail.com","mobile":8765145698,"password":"$2b$10$spLoMDSdVZSTRK0AZXUPyeK4mva7VJgU9ZffrZFRjehr7rFQNkW.e","__v":0},"code":200} {"timestamp":"10-03-2021 10:59:45"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 11:01:00"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 11:04:46"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 11:06:43"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 11:07:00"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 11:51:54"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 11:54:41"}
+error: {"success":false,"message":"Invalid Credentials!","error":[{"value":"","msg":"firstName is Required","param":"firstName","location":"body"},{"value":"","msg":"firstName must be only in alphabets!","param":"firstName","location":"body"},{"value":"","msg":"firstName requires more than 2 characters!","param":"firstName","location":"body"},{"value":"","msg":"lastName is Required","param":"lastName","location":"body"},{"value":"","msg":"lastName must be only in alphabets!","param":"lastName","location":"body"},{"value":"","msg":"lastName requires more than 2 characters!","param":"lastName","location":"body"},{"value":"","msg":"enter valid number","param":"mobile","location":"body"},{"value":"","msg":"mobile number is required","param":"mobile","location":"body"},{"value":"","msg":"mobile number should consist of 10 digits","param":"mobile","location":"body"},{"value":"","msg":"number should belong to INDIA","param":"mobile","location":"body"}]} {"timestamp":"10-03-2021 15:54:03"}
+error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"10-03-2021 15:55:29"}
+error: {"flag":true,"message":"Registration successfull!","data":{"_id":"6048d43ca6d73035c8462c1e","firstName":"Saurabh","lastName":"Tripathi","email":"tripathishiva.311@gmail.com","mobile":8765145698,"password":"$2b$10$uivkL2lay6ss.easGH9qLusr4tRhS9Dyec3qYsfh5qLU4rVUSrqV.","__v":0},"code":200} {"timestamp":"10-03-2021 19:44:20"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 23:16:49"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 23:17:48"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 23:17:54"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 23:18:08"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"10-03-2021 23:18:12"}
