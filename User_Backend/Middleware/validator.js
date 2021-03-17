@@ -25,8 +25,7 @@ module.exports = {
             .trim()
             .isNumeric().withMessage('enter valid number')
             .notEmpty().withMessage('mobile number is required')
-            .isLength({ min: 10, max: 10 }).withMessage('mobile number should consist of 10 digits')
-            .isMobilePhone(["en-IN"]).withMessage('number should belong to INDIA'),
+            .isLength({ min: 10, max: 10 }).withMessage('mobile number should consist of 10 digits'),
 
         body('password')
             .trim()
@@ -52,5 +51,12 @@ module.exports = {
         .trim()
         .notEmpty().withMessage("Email is Required!")
         .isEmail().withMessage("Email is Invalid!!!"),
+    ],
+
+    reset:[
+        body('password')
+            .trim()
+            .notEmpty().withMessage('password is required')
+            .isLength({ min: 5 }).withMessage('password should contain 5 characters')
     ]
 }

@@ -8,6 +8,8 @@
     "mongoose": "^5.11.18",
     "nodemailer": "^6.5.0",
     "smtp": "^0.1.4",
+    "swagger-jsdoc": "^7.0.0-rc.6",
+    "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3"
   },
   "scripts": {

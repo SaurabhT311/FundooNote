@@ -9,6 +9,11 @@ require('dotenv').config();
 
 const { infoLogger, errorLogger}=require('./Middleware/logger');
 app.use(express.json());
+const swaggerUi = require('swagger-ui-express');
+ swaggerDocs=require('./swagger.json');
+ 
+app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs));
+    
 
 app.use('/',routes);
 
