@@ -1,0 +1,250 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "My Fundoo Notes Project",
+        "description": "My Fundoo Notes Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:4000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Fundoo Notes",
+            "description": "API for users in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+   
+    "securityDefinitions":{
+        "token":{
+            "type":"apiKey",
+            "name":"token",
+            "in":"header"
+        }
+    },
+    "security":[
+        {
+            "token":[]
+        }
+    ],
+
+
+
+
+    "paths": {
+        "/registration": {
+            "post": {
+                "tags": [
+                    "Registration"
+                ],
+                "description": "To register new User",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User want to register",
+                        "Schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+    "/login": {
+        "post": {
+            "tags": [
+                "Login"
+            ],
+            "summary": "Logging in",
+            "parameters": [
+                {
+                    "name": "user",
+                    "in": "body",
+                    "description": "Logging in",
+                    "Schema": {
+                        "$ref": "#/definitions/Login"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Login"
+                    }
+                }
+            }
+        }
+    },
+    
+    "/forgotpassword":{
+        "post":{
+        "tags": [
+            "Forgot Password"
+        ],
+        "summary": "Forgot Password",
+        "parameters": [
+            {
+                "name": "user",
+                "in": "body",
+                "description": "Change your password",
+                "Schema": {
+                    "$ref": "#/definitions/ForgotPassword"
+                }
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "OK",
+                "schema": {
+                    "$ref": "#/definitions/ForgotPassword"
+                }
+            }
+        }
+    }
+},
+
+    "/resetpassword/:token":{
+        
+        "post":{
+            "tags": [
+                "Reset Password"
+            ],
+            "summary": "Reset Password",
+            "parameters": [
+                {
+                    "name": "user",
+                    "in": "body",
+                    "description": "Change your password",
+                    "Schema": {
+                        "$ref": "#/definitions/ResetPassword"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/ResetPassword"
+                    }
+                }
+            }
+        }
+    },
+
+    "/note/create": {
+        "post": {
+            "tags": [
+                "Notes"
+            ],
+            "description": "To create new Note",
+            "parameters": [
+                {
+                    "name": "user",
+                    "in": "body",
+                    "description": "User want to create Note",
+                    "Schema": {
+                        "$ref": "#/definitions/Notes"
+                    }
+                }
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Notes"
+                    }
+                }
+            }
+        }
+    },
+
+    "definitions": {
+        "Users": {
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "number"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Login":{
+            "properties":{
+                "email":{
+                    "type":"string"
+                },
+                "password":{
+                    "type":"string"
+                }
+            }
+        },
+        "ForgotPassword":{
+            "properties":{
+                "email":{
+                    "type":"string"
+                }
+            }
+        },
+        "ResetPassword":{
+            "properties":{
+                "password":{
+                    "type":"string"
+                }
+            }
+        },
+
+        "Notes":{
+            "properties":{
+                "Title":{
+                   "type":"string"
+                },
+                "Description":{
+                    "type":"string"
+                }
+            }
+        }
+    }
+}
+}
+            
+        
+    
+    
+    
