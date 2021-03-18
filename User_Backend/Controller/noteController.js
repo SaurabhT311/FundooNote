@@ -178,6 +178,22 @@ class noteController {
             next(error);
         }
     }
+
+    addCollabratorController(req, res) {
+        let noteID = req.params.id;
+        let collabEmail = req.body.email;
+        noteServices.addCollabratorService(noteID, collabEmail)
+            .then((result) => {
+                response.flag = true;
+                response.message = result.message;
+                response.data = result.data;
+                res.status(result.code).send(response);
+            }).catch((err) => {
+                response.flag = false;
+                response.data = err.message;
+                res.status(err.code).send(response);
+            });
+    }
 }
 
 

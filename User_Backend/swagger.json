@@ -26,6 +26,23 @@
     "produces": [
         "application/json"
     ],
+   
+    "securityDefinitions":{
+        "token":{
+            "type":"apiKey",
+            "name":"token",
+            "in":"header"
+        }
+    },
+    "security":[
+        {
+            "token":[]
+        }
+    ],
+
+
+
+
     "paths": {
         "/registration": {
             "post": {
@@ -112,8 +129,62 @@
 
     "/resetpassword/:token":{
         
-    }
-},
+        "post":{
+            "tags": [
+                "Reset Password"
+            ],
+            "summary": "Reset Password",
+            "parameters": [
+                {
+                    "name": "user",
+                    "in": "body",
+                    "description": "Change your password",
+                    "Schema": {
+                        "$ref": "#/definitions/ResetPassword"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/ResetPassword"
+                    }
+                }
+            }
+        }
+    },
+
+    "/note/create": {
+        "post": {
+            "tags": [
+                "Notes"
+            ],
+            "description": "To create new Note",
+            "parameters": [
+                {
+                    "name": "user",
+                    "in": "body",
+                    "description": "User want to create Note",
+                    "Schema": {
+                        "$ref": "#/definitions/Notes"
+                    }
+                }
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Notes"
+                    }
+                }
+            }
+        }
+    },
+
     "definitions": {
         "Users": {
             "properties": {
@@ -150,6 +221,30 @@
                     "type":"string"
                 }
             }
+        },
+        "ResetPassword":{
+            "properties":{
+                "password":{
+                    "type":"string"
+                }
+            }
+        },
+
+        "Notes":{
+            "properties":{
+                "Title":{
+                   "type":"string"
+                },
+                "Description":{
+                    "type":"string"
+                }
+            }
         }
     }
 }
+}
+            
+        
+    
+    
+    

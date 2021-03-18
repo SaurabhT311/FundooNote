@@ -5,6 +5,7 @@ const { validate } = require('../Middleware/validate');
 const jwtToken = require('../Middleware/jwtToken');
 const noteController = require('../Controller/noteController');
 const labelController = require('../Controller/labelController');
+// const collabController = require('../Controller/collabController');
 
 
 route.post('/registration', register, validate, userController.userRegistrationController);
@@ -31,5 +32,9 @@ route.get('/alluserlabel', labelController.getAllLabelController);
 //Label Added To Note
 route.put('/addlabel/:noteId', jwtToken.tokenVerification, noteController.addLabelToNoteController);
 route.put('/deletelabel/:noteId', jwtToken.tokenVerification, noteController.deleteLabelToNoteController);
+
+//collaborators
+route.put('/addcollaborator/:id',jwtToken.tokenVerification,noteController.addCollabratorController);
+
 module.exports = route;
 
