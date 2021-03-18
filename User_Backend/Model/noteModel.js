@@ -38,7 +38,7 @@ const noteSchema = new mongoose.Schema({
 
     collabId:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'Notes'
     }]
 });
 
@@ -131,6 +131,18 @@ class noteModel {
             })
     }
 
+    find(id){
+        console.log("note id: ",id);
+        return notes.findById(id)
+        .then((result)=>{
+           console.log("result is:",result);
+            return result;
+        }).catch((error)=>{
+            console.log("res:",result);
+            return error;
+        })
+    }
+
 
     addLabelToNote = (infoData, callback) => {
         console.log("label is:", infoData.noteId);
@@ -158,24 +170,24 @@ class noteModel {
             callback(null,result)
         );
     }
+
+
+    collabrationAdd_Remove(noteId, userId){
+        console.log("user is",userId);
+        return notes.findByIdAndUpdate(noteId, userId)
+            .then(result => {
+                return result;
+            })
+            .catch(error => {
+                return error;
+            })
+    }
+
+
 }
 
 
-    addCollaborator=(collabData,callback)=>{
-        let id=collabData.userId;
-        return notes.find({collabId:id},(err,result)=>{
-            if(err){
-                callback(err)
-            }else{
-                notes.findById(collabData.noteId,(err,result)=>{
-                    if(err){
-                        callback(err)
-                    }else{
-                        
-                    }
-                })
-            }
-        })
-    }
+      
+    
 
 module.exports = new noteModel();

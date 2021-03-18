@@ -114,6 +114,23 @@ class userModel {
                 return ({ message: "Something went wrong", error: error });
             })
     }
+
+
+    find(email){
+        console.log("email: ",email);
+        return users.findOne({email:email})
+        .then((result)=>{
+        //    console.log("result is:",result);
+            return result;
+        }).catch((error)=>{
+            console.log("res:",result);
+            return error;
+        })
+    }
+
+
+
+    
 }
 
 module.exports = new userModel();
