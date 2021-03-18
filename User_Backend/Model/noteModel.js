@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const labelModels = require('../Model/labelModel');
-const collabModels=require('../Model/collabModel');
 const noteSchema = new mongoose.Schema({
 
     Title: {
@@ -172,7 +171,7 @@ class noteModel {
     }
 
 
-    collabrationAdd_Remove(noteId, userId){
+    collabrationAddRemove(noteId, userId){
         console.log("user is",userId);
         return notes.findByIdAndUpdate(noteId, userId)
             .then(result => {

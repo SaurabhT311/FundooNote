@@ -107,7 +107,7 @@ class userModel {
 
     userResetPassword(email, password) {
 
-        return users.findOneAndUpdate({ email: email },  { password: password })
+        return users.findOneAndUpdate({ email: email }, { password: password })
             .then((result) => {
                 return result;
             }).catch((err) => {
@@ -116,21 +116,36 @@ class userModel {
     }
 
 
-    find(email){
-        console.log("email: ",email);
-        return users.findOne({email:email})
-        .then((result)=>{
-        //    console.log("result is:",result);
-            return result;
-        }).catch((error)=>{
-            console.log("res:",result);
-            return error;
-        })
+    find(email) {
+        console.log("email: ", email);
+        return users.findOne({ email: email })
+            .then((result) => {
+                //    console.log("result is:",result);
+                return result;
+            }).catch((error) => {
+                console.log("res:", result);
+                return error;
+            })
     }
 
+    search(searchKey) {
+        return users.find({
+            $or: [
+                { "email": { $regex: `${searchKey}` } },
+                { "firstName": { $regex: `${searchKey}` } },
+                { "lastName": { $regex: `${searchKey}` } }
+            ]
+        })
+            .then((result) => {
+                console.log("rrrr:",result);
+                return result;
+            })
+            .catch((error) => {
+                console.log("error");
+                return error;
+            })
+    }
 
-
-    
 }
 
 module.exports = new userModel();
