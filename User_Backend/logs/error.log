@@ -56,3 +56,16 @@ error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"16-03
 error: {"flag":true,"message":"Registration successfull!","data":{"_id":"6050e4954ab7cf1baceb1e81","firstName":"Himanshu","lastName":"Gupta","email":"tripathishivam.3111@gmail.com","mobile":8765145698,"password":"$2b$10$qxkZ58xCwv./la9CkSF52e2AuAKYnVHp6WujkSDUF6TkFWvgyAPBO","__v":0},"code":200} {"timestamp":"16-03-2021 22:32:13"}
 error: {"flag":false,"message":"Email id exist!","code":409} {"timestamp":"16-03-2021 23:04:32"}
 error: {"flag":true,"message":"Registration successfull!","data":{"_id":"6050ec374ab7cf1baceb1e82","firstName":"Himanshu","lastName":"Gupta","email":"tripathishivam.312@gmail.com","mobile":8765145698,"password":"$2b$10$739XJEcom9uEZijXt/OY5.DLz0E9W2FA1LeHeGqeyBpLOoy0ICk0.","__v":0},"code":200} {"timestamp":"16-03-2021 23:04:47"}
+error: {"success":false,"status":508,"message":"userModels.findById is not a function"} {"timestamp":"17-03-2021 19:05:31"}
+error: {"success":false,"status":508,"message":"userModels is not defined"} {"timestamp":"17-03-2021 19:21:44"}
+error: {"success":false,"status":508,"message":"collabModels.findById is not a function"} {"timestamp":"17-03-2021 19:37:37"}
+error: {"success":false,"status":508,"message":"collabModels.find is not a function"} {"timestamp":"17-03-2021 19:58:48"}
+error: {"success":false,"status":508,"message":"userId is not defined"} {"timestamp":"17-03-2021 21:28:58"}
+error: {"success":false,"status":508,"message":"userId is not defined"} {"timestamp":"17-03-2021 21:30:20"}
+error: {"success":false,"status":508,"message":"userId is not defined"} {"timestamp":"17-03-2021 21:30:23"}
+error: {"success":false,"status":508,"message":"Cannot read property 'then' of undefined"} {"timestamp":"17-03-2021 21:30:40"}
+error: {"success":false,"status":508,"message":"Cannot read property 'then' of undefined"} {"timestamp":"17-03-2021 23:34:24"}
+error: {"flag":false,"message":"password does not matched !","code":401} {"timestamp":"18-03-2021 01:18:26"}
+error: {"success":false,"status":508,"message":"userId is not defined"} {"timestamp":"18-03-2021 01:25:15"}
+error: {"success":false,"status":508,"message":"Unexpected string in JSON at position 31"} {"timestamp":"18-03-2021 12:24:16"}
+error: {"success":false,"status":508,"message":"noteService is not defined"} {"timestamp":"18-03-2021 13:59:17"}
