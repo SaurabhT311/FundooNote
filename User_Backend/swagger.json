@@ -46,8 +46,9 @@
     "paths": {
         "/registration": {
             "post": {
+                "summary":"Register new user",
                 "tags": [
-                    "Registration"
+                    "Users"
                 ],
                 "description": "To register new User",
                 "parameters": [
@@ -69,16 +70,20 @@
                         "schema": {
                             "$ref": "#/definitions/Users"
                         }
+                    },
+                    "500":{
+                        "description":"User registration failed"
                     }
                 }
             }
         },
     "/login": {
         "post": {
+            "summary": "Login user",
             "tags": [
-                "Login"
+                "Users"
             ],
-            "summary": "Logging in",
+            "description": "Login user in Fundoo Notes",
             "parameters": [
                 {
                     "name": "user",
@@ -95,6 +100,9 @@
                     "schema": {
                         "$ref": "#/definitions/Login"
                     }
+                },
+                "500":{
+                    "description":"User login failed"
                 }
             }
         }
@@ -102,10 +110,11 @@
     
     "/forgotpassword":{
         "post":{
+            "summary": "Forgot Password",
         "tags": [
-            "Forgot Password"
+            "Users"
         ],
-        "summary": "Forgot Password",
+        "description": "Link for forget password",
         "parameters": [
             {
                 "name": "user",
@@ -122,6 +131,9 @@
                 "schema": {
                     "$ref": "#/definitions/ForgotPassword"
                 }
+            },
+            "500":{
+                "description":"Something went wrong"
             }
         }
     }
@@ -130,10 +142,11 @@
     "/resetpassword/:token":{
         
         "post":{
-            "tags": [
-                "Reset Password"
-            ],
             "summary": "Reset Password",
+            "tags": [
+                "Users"
+            ],
+            "description": "Reset Password",
             "parameters": [
                 {
                     "name": "user",
@@ -150,24 +163,28 @@
                     "schema": {
                         "$ref": "#/definitions/ResetPassword"
                     }
+                },
+                "500":{
+                    "description":"something wemt wrong"
                 }
             }
         }
     },
 
-    "/note/create": {
+    "/note": {
         "post": {
+            "summary":"create new notes",
             "tags": [
                 "Notes"
             ],
             "description": "To create new Note",
             "parameters": [
                 {
-                    "name": "user",
+                    "name": "Notes",
                     "in": "body",
                     "description": "User want to create Note",
                     "Schema": {
-                        "$ref": "#/definitions/Notes"
+                        "$ref": "#/definitions/createNote"
                     }
                 }
             ],
@@ -176,14 +193,220 @@
             ],
             "responses": {
                 "200": {
-                    "description": "OK",
+                    "description": "Note added Succesfully",
                     "schema": {
-                        "$ref": "#/definitions/Notes"
+                        "$ref": "#/definitions/createNote"
                     }
+                },
+                "500":{
+                    "description":"something wemt wrong"
                 }
+            }
+        },
+
+    "get": {
+        "summary": "Getting All Notes of User",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Get Notes",
+        "parameters": [
+            {
+                "name": "Notes",
+                "description": "Creating Note"
+            }
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Getting All Note sucessfully"
+            },
+            "500": {
+                "description": "some Error occure!!"
+            }
+        }
+    }
+},
+
+"/note/{id}": {
+    "delete": {
+        "summary": "Delete Notes",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Note deleted from the system",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": "true",
+                "description": "Note id(which is supposed to be deleted) "
+            }
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Note added sucessfully"
+            },
+            "500": {
+                "description": "error occured!!"
             }
         }
     },
+
+    "put": {
+        "summary": "Modify Notes",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Modify Note from the system",
+        "parameters": [
+            {
+                "name": "details",
+                "in": "body",
+                "required": "true",
+                "description": "Data which you want to Modify ",
+                "schema": {
+                    "$ref": "#/definitions/createNote"
+                }
+            },
+            {
+                "name": "id",
+                "in": "path",
+                "required": "true",
+                "description": "Note id(which is supposed to be modified) "
+            }
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Note added sucessfully",
+                "schema": {
+                    "$ref": "#/definitions/createNote"
+                }
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    }
+},
+
+"/note/archive/{id}": {
+    "put": {
+        "summary": "Move Note to Archive",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Notes to Be ISArchived or !ISArchived",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": "true",
+                "description": "Note id(which is supposed to be Archive) "
+            }
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Note sucessfully Archived"
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    }
+},
+
+"/note/trash/{id}": {
+    "put": {
+        "summary": "Move Note to Trash",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Notes to Be TRASH or !TRASH",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": "true",
+                "description": "Note id(which is supposed to be Trash) "
+            }
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Note sucessfully Trash"
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    }
+},
+
+"/label":{
+    "post": {
+        "summary": "Add new Label on Notes",
+        "tags": [
+            "Labels"
+        ],
+        "description": "Add new Label on Notes",
+        "parameters": [
+            {
+                "name": "labelName",
+                "in": "body",
+                "description": "Add new Label on Notes",
+                "schema": {
+                    "$ref": "#/definitions/Addlabel"
+                }
+            }
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Label Added Sucessfully",
+                "schema": {
+                    "$ref": "#/definitions/Addlabel"
+                }
+            },
+            "500": {
+                "description": "Some Error Occured!!"
+            }
+        }
+    },
+    "get": {
+        "summary": "Getting All Label",
+        "tags": [
+            "Labels"
+        ],
+        "description": "Getting All Label",
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Getting All Label sucessfully"
+            },
+            "500": {
+                "description": "some Error occure!!"
+            }
+        }
+    }
+},
 
     "definitions": {
         "Users": {
@@ -230,7 +453,7 @@
             }
         },
 
-        "Notes":{
+        "createNote":{
             "properties":{
                 "Title":{
                    "type":"string"
@@ -239,10 +462,21 @@
                     "type":"string"
                 }
             }
+        },
+
+        "label":{
+            "properties": {
+                "labelId": {
+                    "type": "string"
+                }
+            }
         }
+
     }
 }
 }
+
+
             
         
     
