@@ -1,6 +1,8 @@
 const noteModels = require('../Model/noteModel');
 let { OK, NotFound, BadRequest } = require('../Middleware/httpStatusCode.json');
 const { callbackPromise } = require('nodemailer/lib/shared');
+const userModels = require('../Model/UserModel');
+const { error } = require('winston');
 
 class noteService {
 
@@ -66,6 +68,7 @@ class noteService {
     }
 
     addLabelToNoteService = (labelData, callback) => {
+
         noteModels.addLabelToNote(labelData, (err, result) => {
             if (err) {
                 return callback(err);
@@ -88,7 +91,26 @@ class noteService {
         });
     }
 
-}
+    addCollabratorService(noteID, email) {
+        return userModels.find(email)
+            .then((result) => {
+                if (result) {
+                    console.log("r is:",result);
+                    let push = { $push: { collabId: result._id } }
+                    return noteModels.collabrationAdd_Remove(noteID, push)
+                        .then((result) => {
+                            return ({ message: "Collabration Successfully", data: result, code:OK  });
+                        }).catch((err) => {
+                            return ({ message: "Collabration is Unsuccessful!!", error: err,  code:NotFound });
+                        });
+                } else {
+                    return ({ message: "User Not Found!!", error: err, code:NotFound });
+                }
+            }).catch((err) => {
+                return ({ message: "Please Enter Correct User Credential", error: err, code:NotFound });
+            });
+    }
+    }
 
 module.exports = new noteService();
 
