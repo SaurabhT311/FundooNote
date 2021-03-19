@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const labelModels = require('../Model/labelModel');
+const redisCache = require('../Middleware/redisCache');
 const noteSchema = new mongoose.Schema({
 
     Title: {
@@ -35,9 +36,9 @@ const noteSchema = new mongoose.Schema({
         ref: "labels"
     }],
 
-    collabId:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Notes'
+    collabId: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Notes'
     }]
 });
 
@@ -130,16 +131,16 @@ class noteModel {
             })
     }
 
-    find(id){
-        console.log("note id: ",id);
+    find(id) {
+        console.log("note id: ", id);
         return notes.findById(id)
-        .then((result)=>{
-           console.log("result is:",result);
-            return result;
-        }).catch((error)=>{
-            console.log("res:",result);
-            return error;
-        })
+            .then((result) => {
+                console.log("result is:", result);
+                return result;
+            }).catch((error) => {
+                console.log("res:", result);
+                return error;
+            })
     }
 
 
@@ -157,7 +158,7 @@ class noteModel {
                     callback
                 );
             }
-              callback(err);
+            callback(err);
         })
     }
 
@@ -166,27 +167,23 @@ class noteModel {
         return notes.findByIdAndUpdate(labelData.noteId, {
             $pull: { labelId: labelData.labelId },
         }, { new: true },
-            callback(null,result)
+            callback(null, result)
         );
     }
 
 
-    collabrationAddRemove(noteId, userId){
-        console.log("user is",userId);
+    collabrationAddRemove(noteId, userId) {
         return notes.findByIdAndUpdate(noteId, userId)
-            .then(result => {
+            .then((result) => {
+                // console.log("user is jhajc",result);
                 return result;
             })
-            .catch(error => {
-                return error;
+            .catch((err) => {
+                return err;
             })
     }
-
-
 }
 
 
-      
-    
 
 module.exports = new noteModel();

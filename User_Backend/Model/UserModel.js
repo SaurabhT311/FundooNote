@@ -116,17 +116,18 @@ class userModel {
     }
 
 
-    find(email) {
-        console.log("email: ", email);
-        return users.findOne({ email: email })
+    find(userId) {
+        console.log("id is:", userId);
+        return users.findById(userId)
             .then((result) => {
-                //    console.log("result is:",result);
+                console.log("result is:", result);
                 return result;
             }).catch((error) => {
-                console.log("res:", result);
+                console.log("res:");
                 return error;
             })
     }
+
 
     search(searchKey) {
         return users.find({
@@ -137,7 +138,7 @@ class userModel {
             ]
         })
             .then((result) => {
-                console.log("rrrr:",result);
+                // console.log("rrrr:",result);
                 return result;
             })
             .catch((error) => {
@@ -145,7 +146,6 @@ class userModel {
                 return error;
             })
     }
-
 }
 
 module.exports = new userModel();

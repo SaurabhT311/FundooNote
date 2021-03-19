@@ -1,5 +1,6 @@
 const noteServices = require('../Service/noteService');
 const statusCode = require('../Middleware/httpStatusCode.json');
+const redisCache = require('../Middleware/redisCache');
 const response = {};
 
 class noteController {
@@ -10,6 +11,7 @@ class noteController {
             // console.log("it is:",id);
             noteServices.createNoteService(req.body, id)
                 .then((result) => {
+                    // redisCache.loadCache("id akbdcba:",id,result.data)
                     response.flag = true;
                     console.log("result is:", result);
                     response.message = result.message;
@@ -26,27 +28,55 @@ class noteController {
         }
     }
 
-
     getNoteController(req, res) {
         try {
             let id = req.decoded._id;
             console.log("id is:", id);
             noteServices.getNoteService(id)
                 .then((result) => {
+                    // redisCache.client.set(` ${userId}`, JSON.stringify(result));
+                    // console.log("loading data:");
+                    redisCache.loadCache(id, result.data)
                     // console.log(result);
                     response.flag = true;
                     response.message = result.message;
                     response.data = result.data;
-                    res.status(result.code).send(response);
+                    res.status(200).send(response);
+
                 }).catch((err) => {
+                    console.log("error");
                     response.flag = false;
                     response.message = err.message;
-                    res.status(err.code).send(response);
+                    res.status(400).send(response);
                 })
         } catch (error) {
             console.log(error);
         }
     }
+
+    // getNoteController(req, res) {
+    //     try {
+    //         let id = req.decoded._id;
+    //         console.log("id is:", id);
+    //         noteServices.getNoteService(id)
+    //             .then((result) => {
+    //                 console.log("loading data:");
+    //                 // redisCache.loadCache(id,result.data)
+    //                 // console.log(result);
+    //                 response.flag = true;
+    //                 response.message = result.message;
+    //                 response.data = result.data;
+    //                 res.status(result.code).send(response);
+    //             }).catch((err) => {
+    //                 console.log("error");
+    //                 response.flag = false;
+    //                 response.message = err.message;
+    //                 res.status(err.code).send(response);
+    //             })
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     updateNoteController(req, res) {
         try {
@@ -180,10 +210,13 @@ class noteController {
     }
 
     addCollabratorController(req, res) {
-        let noteID = req.params.id;
-        let collabEmail = req.body.email;
-        noteServices.addCollabratorService(noteID, collabEmail)
+        let noteId = req.params.id;
+        let userId = req.body.userId;
+        // console.log("user:",userId);
+        // console.log("noteId:",noteId);
+        noteServices.addCollabratorService(noteId, userId)
             .then((result) => {
+                // console.log("rrrrrr:",result);
                 response.flag = true;
                 response.message = result.message;
                 response.data = result.data;
@@ -197,8 +230,8 @@ class noteController {
 
     removeCollaboratorController(req, res) {
         let noteId = req.params.id;
-        let collabEmail = req.body.email;
-        noteServices.removeCollaboratorService(noteId, collabEmail)
+        let userId = req.body.userId
+        noteServices.removeCollaboratorService(noteId, userId)
             .then((result) => {
                 response.flag = true;
                 response.message = result.message;
@@ -215,10 +248,10 @@ class noteController {
         let searchKey = req.body;
         noteServices.searchService(searchKey)
             .then((result) => {
-                console.log("result",result);
+                console.log("result", result);
                 response.flag = true;
                 response.message = result.message;
-                response.data = result.data;              
+                response.data = result.data;
                 res.status(200).send(response);
             }).catch((err) => {
                 console.log("error");

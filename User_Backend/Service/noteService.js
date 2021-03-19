@@ -90,15 +90,18 @@ class noteService {
         });
     }
 
-    addCollabratorService(noteID, email) {
-        return userModels.find(email)
+    addCollabratorService(noteId, userId) {
+        // console.log("use:",userId);
+        return userModels.find(userId)
             .then((result) => {
                 if (result) {
-                    console.log("r is:", result);
-                    let push = { $push: { collabId: result._id }, new:true
-                }
-                    return noteModels.collabrationAddRemove(noteID, push)
+                    // console.log("r is:", result);
+                    let push = { $push: { collabId: result._id }, new: true }
+                    // console.log("push :",push);
+                    // console.log("noteid",noteId);
+                    return noteModels.collabrationAddRemove(noteId, push)
                         .then((result) => {
+                            // console.log("data is",result);
                             return ({ message: "Collabration Successfully", data: result, code: OK });
                         }).catch((err) => {
                             return ({ message: "Collabration is Unsuccessful!!", error: err, code: NotFound });
@@ -112,32 +115,12 @@ class noteService {
     }
 
 
-//     removeCollaboratorService(noteId, email) {
-//         return userModels.search()
-//            .then((result) => {
-//                if (result) {
-//                    console.log("res is:", result);
-//                    let pull = { $pull: { collabId: result._id },new:true }
-//                    return noteModels.collabrationAddRemove(noteId, pull)
-//                        .then((result) => {
-//                            return ({ flag: true, message: "Removed Collaborator recipient", data: result, code: OK })
-//                        }).catch((err) => {
-//                            return ({ flag: false, message: "Removal of collaborator denied", error: err, code: NotFound })
-//                        })
-//                } else {
-//                    return ({ flag: false, message: "User Not Found", error: err, code: NotFound })
-//                }
-//            }).catch((err) => {
-//                return ({ flag: false, message: "Enter valid credentials", error: err, code: NotFound })
-//            })
-//    }
-
-    removeCollaboratorService(noteId, email) {
-         return userModels.find(email)
+    removeCollaboratorService(noteId, userId) {
+        return userModels.find(userId)
             .then((result) => {
                 if (result) {
                     console.log("res is:", result);
-                    let pull = { $pull: { collabId: result._id },new:true }
+                    let pull = { $pull: { collabId: result._id }, new: true }
                     return noteModels.collabrationAddRemove(noteId, pull)
                         .then((result) => {
                             return ({ flag: true, message: "Removed Collaborator recipient", data: result, code: OK })
@@ -153,18 +136,18 @@ class noteService {
     }
 
     searchService(searchKey) {
-        console.log("search:",searchKey);
+        console.log("search:", searchKey);
         return userModels.search(searchKey)
-        
+
             .then((result) => {
                 if (result.length == 0) {
-                    return ({ message: " Data Not Found!", error: err, code:NotFound });
+                    return ({ message: " Data Not Found!", error: err, code: NotFound });
                 } else {
-                    console.log("res is:",result);
-                    return ({ message: "Search Data Found", data: result, code:OK });
+                    console.log("res is:", result);
+                    return ({ message: "Search Data Found", data: result, code: OK });
                 }
             }).catch((err) => {
-                return ({ message: "Search Matching Data Not Found!", error: err, code:NotFound });
+                return ({ message: "Search Matching Data Not Found!", error: err, code: NotFound });
             });
     }
 }

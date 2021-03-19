@@ -355,6 +355,196 @@
         }
     }
 },
+"/addlabel/{noteId}": {
+    "put": {
+        "summary": "Add Label On Notes",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Adding Label On Notes",
+        "parameters": [
+                {
+                    "name": "noteId",
+                    "in": "path",
+                    "required": "true",
+                    "description": "Enter Note Id where you want  to add label "
+                },
+                {
+                    "name":"labelId",
+                    "in":"body",
+                    "required":"true",
+                    "description":"Enter Label Id which you want to add in note",
+                    "schema": {
+                        "$ref": "#/definitions/label"
+                    }
+                }
+            
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Note sucessfully Trash",
+                "schema": {
+                    "$ref": "#/definitions/label"
+                }
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    }
+},
+
+"/deletelabel/{noteId}": {
+    "put": {
+        "summary": "Remove Label From Notes",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Remove Label From Notes",
+        "parameters": [
+                {
+                    "name": "noteId",
+                    "in": "path",
+                    "required": "true",
+                    "description": "Enter Note Id where you want  to Remove label "
+                },
+                {
+                    "name":"labelId",
+                    "in":"body",
+                    "required":"true",
+                    "description":"Enter Label Id which you want to remove from note",
+                    "schema": {
+                        "$ref": "#/definitions/label"
+                    }
+                }
+            
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Note sucessfully Trash",
+                "schema": {
+                    "$ref": "#/definitions/label"
+                }
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    }
+},
+
+"/createCollaborator": {
+    "put": {
+        "summary": "Add Collaborator on Notes",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Add Collaborator on Notes",
+        "parameters": [
+                {
+                    "name":"Add Collaborator details Notes",
+                    "in":"body",
+                    "required":"true",
+                    "description":"Add Collaborator details Notes",
+                    "schema": {
+                        "$ref": "#/definitions/Collaborator"
+                    }
+                }
+            
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Collaborator Added sucessfully",
+                "schema": {
+                    "$ref": "#/definitions/Collaborator"
+                }
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    }
+},
+
+"/removeCollaborator": {
+    "put": {
+        "summary": "Remove Collaborator From Notes",
+        "tags": [
+            "Notes"
+        ],
+        "description": "Remove Collaborator From Notes",
+        "parameters": [
+                {
+                    "name":"Remove Collaborator From Notes",
+                    "in":"body",
+                    "required":"true",
+                    "description":"Remove Collaborator From Notes",
+                    "schema": {
+                        "$ref": "#/definitions/Collaborator"
+                    }
+                }
+            
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Collaborator Added sucessfully",
+                "schema": {
+                    "$ref": "#/definitions/Collaborator"
+                }
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    }
+},
+
+"/note/search":{
+    "get": {
+        "summary": "Search User by Email,FirstName and LastName",
+        "tags": [
+            "Users"
+        ],
+        "description": "Search User by Email,FirstName and LastName",
+        "parameters": [
+            {
+                "name": "searchKey",
+                "in": "body",
+                "description": "Search User by Email,FirstName and LastName",
+                "schema": {
+                    "$ref": "#/definitions/UserSearch"
+                }
+            }
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Data search Sucessfully",
+                "schema": {
+                    "$ref": "#/definitions/UserSearch"
+                }
+            },
+            "500": {
+                "description": "Some Error Occured!!"
+            }
+        }
+    }
+
+},
 
 "/label":{
     "post": {
@@ -408,6 +598,78 @@
     }
 },
 
+
+"/label/{id}":{
+    "delete": {
+        "summary": "Delete Labels",
+        "tags": [
+            "Labels"
+        ],
+        "description": "Labels deleted from the Note",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": "true",
+                "description": "Label id(which is supposed to be deleted) "
+            }
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Labels Deletes sucessfully"
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    },
+    "put": {
+        "summary": "Modifying Label On Notes",
+        "tags": [
+            "Labels"
+        ],
+        "description": "Modifying Label On Notes",
+        "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "Enter Label Id where you want Modify label "
+                },
+                {
+                    "name":"labelName",
+                    "in":"body",
+                    "required":"true",
+                    "description":"Enter  updated Label Name which you want to update in note",
+                    "schema": {
+                        "$ref": "#/definitions/Addlabel"
+                    }
+                }
+            
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Note sucessfully Trash",
+                "schema": {
+                    "$ref": "#/definitions/Addlabel"
+                }
+            },
+            "500": {
+                "description": "error occured!!"
+            }
+        }
+    }
+},
+
+
+    
+    
     "definitions": {
         "Users": {
             "properties": {
@@ -468,6 +730,33 @@
             "properties": {
                 "labelId": {
                     "type": "string"
+                }
+            }
+        },
+
+        "Collaborator":{
+            "properties": {
+                "noteId": {
+                    "type": "string"
+                },
+                "userId":{
+                    "type":"string"
+                }
+            }
+        },
+
+        "UserSearch":{
+            "properties": {
+                "searchKey": {
+                    "type": "string"
+                }
+            }
+        },
+
+        "Addlabel":{
+            "properties":{
+                "labelTitle":{
+                    "type":"string"
                 }
             }
         }

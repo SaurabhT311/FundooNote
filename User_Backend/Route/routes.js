@@ -1,11 +1,12 @@
 const route = require('express').Router();
 const userController = require('../Controller/userController');
-const { register, login, forget, reset } = require('../Middleware/validator');
+const { register, login, forget, reset, addNote } = require('../Middleware/validator');
 const { validate } = require('../Middleware/validate');
 const jwtToken = require('../Middleware/jwtToken');
 const noteController = require('../Controller/noteController');
 const labelController = require('../Controller/labelController');
-// const collabController = require('../Controller/collabController');
+const redisCache = require('../Middleware/redisCache');
+
 
 
 route.post('/registration', register, validate, userController.userRegistrationController);
@@ -14,15 +15,16 @@ route.post('/forgotpassword', forget, validate, userController.userForgetPasswor
 route.post('/resetpassword/:token', reset, jwtToken.tokenVerification, userController.userResetPasswordController);
 
 //notes routes
-route.post('/note/create', jwtToken.tokenVerification, noteController.createNoteController);
-route.get('/note/get', jwtToken.tokenVerification, noteController.getNoteController);
-route.put('/note/updateId/:id', jwtToken.tokenVerification, noteController.updateNoteController);
-route.put('/note/archive', jwtToken.tokenVerification, noteController.archiveNoteController);
-route.delete('/note/delete/:id', jwtToken.tokenVerification, noteController.deleteNoteController)
+route.post('/note',addNote,validate, jwtToken.tokenVerification, noteController.createNoteController);
+route.get('/note',jwtToken.tokenVerification, redisCache.checkCache,noteController.getNoteController);
+route.put('/note/:id', jwtToken.tokenVerification, noteController.updateNoteController);
+route.put('/note/archive/:id', jwtToken.tokenVerification, noteController.archiveNoteController);
+route.put('/note/trash/:id',jwtToken.tokenVerification,noteController.trashNoteController);
+route.delete('/note/:id', jwtToken.tokenVerification, noteController.deleteNoteController)
 
 
 //label routes
-route.post('/label/create', jwtToken.tokenVerification, labelController.createLabelController);
+route.post('/label', jwtToken.tokenVerification, labelController.createLabelController);
 route.get('/label', jwtToken.tokenVerification, labelController.getLabelController);
 route.post('/update/:id', jwtToken.tokenVerification, labelController.updateLabelController);
 route.delete('/delete/:id', jwtToken.tokenVerification, labelController.deleteLabelController);
@@ -34,7 +36,9 @@ route.put('/addlabel/:noteId', jwtToken.tokenVerification, noteController.addLab
 route.put('/deletelabel/:noteId', jwtToken.tokenVerification, noteController.deleteLabelToNoteController);
 
 //collaborators
+route.get('/note/search',jwtToken.tokenVerification,noteController.searchController);
 route.put('/addcollaborator/:id',jwtToken.tokenVerification,noteController.addCollabratorController);
+route.put('/removecollaborator/:id',jwtToken.tokenVerification,noteController.removeCollaboratorController);
 
 module.exports = route;
 
