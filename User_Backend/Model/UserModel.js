@@ -20,11 +20,6 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
 
-    mobile: {
-        type: Number,
-        required: [true, 'mobile number is required'],
-    },
-
     password: {
         type: String,
         required: true,
@@ -41,7 +36,6 @@ class userModel {
             "firstName": result.firstName,
             "lastName": result.lastName,
             "email": result.email,
-            "mobile": result.mobile
         }
     }
 
@@ -81,7 +75,6 @@ class userModel {
                             "firstName": data[0].firstName,
                             "lastName": data[0].lastName,
                             "email": data[0].email,
-                            "mobile": data[0].mobile,
                             "token": token
                         }
                         callback(null, userData);

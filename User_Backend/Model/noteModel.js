@@ -33,12 +33,12 @@ const noteSchema = new mongoose.Schema({
 
     labelId: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "labels"
+        ref: "label"
     }],
 
     collabId: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Notes'
+        ref: 'User'
     }]
 });
 
@@ -175,7 +175,7 @@ class noteModel {
     collabrationAddRemove(noteId, userId) {
         return notes.findByIdAndUpdate(noteId, userId)
             .then((result) => {
-                // console.log("user is jhajc",result);
+                console.log("res is:",result);
                 return result;
             })
             .catch((err) => {

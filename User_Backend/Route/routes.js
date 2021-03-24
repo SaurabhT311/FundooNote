@@ -1,6 +1,6 @@
 const route = require('express').Router();
 const userController = require('../Controller/userController');
-const { register, login, forget, reset, addNote } = require('../Middleware/validator');
+const { register, login, forget, reset, addNote, archive, label, updateNotes, trash } = require('../Middleware/validator');
 const { validate } = require('../Middleware/validate');
 const jwtToken = require('../Middleware/jwtToken');
 const noteController = require('../Controller/noteController');
@@ -17,9 +17,9 @@ route.post('/resetpassword/:token', reset, jwtToken.tokenVerification, userContr
 //notes routes
 route.post('/note',addNote,validate, jwtToken.tokenVerification, noteController.createNoteController);
 route.get('/note',jwtToken.tokenVerification, redisCache.checkCache,noteController.getNoteController);
-route.put('/note/:id', jwtToken.tokenVerification, noteController.updateNoteController);
-route.put('/note/archive/:id', jwtToken.tokenVerification, noteController.archiveNoteController);
-route.put('/note/trash/:id',jwtToken.tokenVerification,noteController.trashNoteController);
+route.put('/note/:id',updateNotes,validate, jwtToken.tokenVerification, noteController.updateNoteController);
+route.put('/note/archive/:id',archive,validate, jwtToken.tokenVerification, noteController.archiveNoteController);
+route.put('/note/trash/:id',trash,validate, jwtToken.tokenVerification,noteController.trashNoteController);
 route.delete('/note/:id', jwtToken.tokenVerification, noteController.deleteNoteController)
 
 
@@ -32,8 +32,8 @@ route.get('/alluserlabel', labelController.getAllLabelController);
 
 
 //Label Added To Note
-route.put('/addlabel/:noteId', jwtToken.tokenVerification, noteController.addLabelToNoteController);
-route.put('/deletelabel/:noteId', jwtToken.tokenVerification, noteController.deleteLabelToNoteController);
+route.put('/addlabel/:noteId',label,validate, jwtToken.tokenVerification, noteController.addLabelToNoteController);
+route.put('/deletelabel/:noteId',label,validate, jwtToken.tokenVerification, noteController.deleteLabelToNoteController);
 
 //collaborators
 route.get('/note/search',jwtToken.tokenVerification,noteController.searchController);

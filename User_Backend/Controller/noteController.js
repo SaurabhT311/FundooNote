@@ -34,8 +34,6 @@ class noteController {
             console.log("id is:", id);
             noteServices.getNoteService(id)
                 .then((result) => {
-                    // redisCache.client.set(` ${userId}`, JSON.stringify(result));
-                    // console.log("loading data:");
                     redisCache.loadCache(id, result.data)
                     // console.log(result);
                     response.flag = true;
@@ -53,30 +51,6 @@ class noteController {
             console.log(error);
         }
     }
-
-    // getNoteController(req, res) {
-    //     try {
-    //         let id = req.decoded._id;
-    //         console.log("id is:", id);
-    //         noteServices.getNoteService(id)
-    //             .then((result) => {
-    //                 console.log("loading data:");
-    //                 // redisCache.loadCache(id,result.data)
-    //                 // console.log(result);
-    //                 response.flag = true;
-    //                 response.message = result.message;
-    //                 response.data = result.data;
-    //                 res.status(result.code).send(response);
-    //             }).catch((err) => {
-    //                 console.log("error");
-    //                 response.flag = false;
-    //                 response.message = err.message;
-    //                 res.status(err.code).send(response);
-    //             })
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
 
     updateNoteController(req, res) {
         try {
@@ -252,12 +226,12 @@ class noteController {
                 response.flag = true;
                 response.message = result.message;
                 response.data = result.data;
-                res.status(200).send(response);
+                res.status(result.code).send(response);
             }).catch((err) => {
                 console.log("error");
                 response.flag = false;
                 response.data = err.message;
-                res.status(400).send(response);
+                res.status(err.code).send(response);
             });
     }
 

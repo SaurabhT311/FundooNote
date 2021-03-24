@@ -97,7 +97,7 @@ class noteService {
                 if (result) {
                     // console.log("r is:", result);
                     let push = { $push: { collabId: result._id }, new: true }
-                    // console.log("push :",push);
+                     console.log("push :",push);
                     // console.log("noteid",noteId);
                     return noteModels.collabrationAddRemove(noteId, push)
                         .then((result) => {

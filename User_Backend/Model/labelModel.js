@@ -71,7 +71,6 @@ class labelModel {
         })
     }
 
-
     allLabel=(callback)=>{
        return label.find(callback);
     }
