@@ -9,31 +9,97 @@ class Registration extends React.Component {
         super(props)
         this.state = {
             firstname: '',
-            firstnameErr:false,
-            firstnameErrMsg:false 
+            firstnameErr: false,
+            firstnameErrMsg: '',
+
+            lastname: '',
+            lastnameErr: false,
+            lastnameErrMsg: '',
+
+            email: '',
+            emailErr: false,
+            emailErrMsg: '',
+
+            password: '',
+            passwordErr: false,
+            passwordErrMsg: '',
+
+            confirmPassword: '',
+            confirmPasswordErr: false,
+            confirmPasswordErrMsg: ''
+
         }
     }
 
 
     handleChange = (e) => {
         console.log(e.target.value);
-        this.setState({ firstname: e.target.value })
+        this.setState({ [e.target.name]: e.target.value })
+
     }
 
-    validationCheck=()=>{
+    validationCheck = () => {
         this.setState({
-            firstnameErr:false,
-            firstnameErrMsg:false
+            firstnameErr: false,
+            firstnameErrMsg: false
         })
 
-        if(this.state.firstname.length==0){
-            this.setState({firstnameErr:true})
-            this.setState({firstnameErrMsg:"Enter first and last name"})
+        this.setState({
+            lastnameErr: false,
+            lastnameErrMsg: ""
+        })
+
+        this.setState({
+            emailErr: false,
+            emailErrMsg: ""
+        })
+
+        this.setState({
+            passwordErr: false,
+            passwordErrMsg: ""
+        })
+
+        this.setState({
+            confirmPasswordErr: false,
+            confirmPasswordErrMsg: ""
+        })
+
+        if (this.state.firstname.length === 0) {
+            this.setState({ firstnameErr: true })
+            this.setState({ firstnameErrMsg: "Enter first name" })
+        }
+
+        if (this.state.lastname.length === 0) {
+            this.setState({ lastnameErr: true })
+            this.setState({ lastnameErrMsg: "Enter last name" })
+        }
+
+        if (!/[a-zA-Z0-9._]+[@]{1}[a-zA-Z120-9]*[.]{1}[a-zA-Z]*$/.test(this.state.email)) {
+            this.setState({ emailErr: true })
+            this.setState({ emailErrMsg: "Enter valid email" })
+        }
+
+        if (this.state.email.length === 0) {
+            this.setState({ emailErr: true })
+            this.setState({ emailErrMsg: "Enter email" })
+        }
+
+        if (this.state.password.length === 0) {
+            this.setState({ passwordErr: true })
+            this.setState({ passwordErrMsg: "Enter a password" })
+        }
+
+        if (this.state.password != this.state.confirmPassword) {
+            this.setState({
+                confirmPasswordErr: true,
+                confirmPasswordErrMsg: "passwords didn't match"
+            })
+
         }
     }
 
-    submit=()=>{
-         this.validationCheck();
+    submit = () => {
+        this.validationCheck();
     }
 
 
@@ -60,7 +126,7 @@ class Registration extends React.Component {
                                             <TextField id="outlined"
                                                 size="small"
                                                 label="First name"
-                                                firstname="firstname"
+                                                name="firstname"
                                                 onChange={this.handleChange}
                                                 error={this.state.firstnameErr}
                                                 helperText={this.state.firstnameErrMsg}
@@ -72,6 +138,10 @@ class Registration extends React.Component {
                                         <div className="input">
                                             <TextField id="outlined"
                                                 size="small"
+                                                name="lastname"
+                                                onChange={this.handleChange}
+                                                error={this.state.lastnameErr}
+                                                helperText={this.state.lastnameErrMsg}
                                                 label="Last name"
                                                 variant="outlined"
                                                 fullWidth />
@@ -84,6 +154,10 @@ class Registration extends React.Component {
                                         <div className="email_Input">
                                             <TextField id="outlined"
                                                 size="small"
+                                                name="email"
+                                                onChange={this.handleChange}
+                                                error={this.state.emailErr}
+                                                helperText={this.state.emailErrMsg}
                                                 label="Usermail"
                                                 variant="outlined"
                                                 fullWidth />
@@ -96,6 +170,10 @@ class Registration extends React.Component {
                                             <TextField id="outlined"
                                                 size="small"
                                                 label="Password"
+                                                name="password"
+                                                onChange={this.handleChange}
+                                                error={this.state.passwordErr}
+                                                helperText={this.state.passwordErrMsg}
                                                 type='password'
                                                 variant="outlined"
                                                 fullWidth />
@@ -105,6 +183,11 @@ class Registration extends React.Component {
                                             <TextField id="outlined"
                                                 size="small"
                                                 label="Confirm"
+                                                name="confirmPassword"
+                                                onChange={this.handleChange}
+                                                error={this.state.confirmPasswordErr}
+                                                helperText={this.state.confirmPasswordErrMsg}
+                                                type="password"
                                                 variant="outlined"
                                                 fullWidth />
                                         </div>
@@ -134,7 +217,7 @@ class Registration extends React.Component {
                                 </form>
 
                                 <div className="image_field">
-                                    <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" height="244" width="270"></img>
+                                    <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="google" height="225"></img>
                                     <p className="text_field">
                                         One Account. All of Fundoo working for you
                                         </p>
