@@ -3,6 +3,9 @@ import './registration.css';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
+import Service from '../../services/userService';
+const service = new Service();
+
 
 class Registration extends React.Component {
     constructor(props) {
@@ -26,7 +29,9 @@ class Registration extends React.Component {
 
             confirmPassword: '',
             confirmPasswordErr: false,
-            confirmPasswordErrMsg: ''
+            confirmPasswordErrMsg: '',
+
+            showPassword: false
 
         }
     }
@@ -39,44 +44,39 @@ class Registration extends React.Component {
     }
 
     validationCheck = () => {
+
         this.setState({
             firstnameErr: false,
-            firstnameErrMsg: false
-        })
+            firstnameErrMsg: "",
 
-        this.setState({
             lastnameErr: false,
-            lastnameErrMsg: ""
-        })
+            lastnameErrMsg: "",
 
-        this.setState({
             emailErr: false,
-            emailErrMsg: ""
-        })
+            emailErrMsg: "",
 
-        this.setState({
             passwordErr: false,
-            passwordErrMsg: ""
-        })
+            passwordErrMsg: "",
 
-        this.setState({
             confirmPasswordErr: false,
             confirmPasswordErrMsg: ""
         })
+
 
         if (this.state.firstname.length === 0) {
             this.setState({ firstnameErr: true })
             this.setState({ firstnameErrMsg: "Enter first name" })
         }
 
+
         if (this.state.lastname.length === 0) {
             this.setState({ lastnameErr: true })
             this.setState({ lastnameErrMsg: "Enter last name" })
         }
 
-        if (!/[a-zA-Z0-9._]+[@]{1}[a-zA-Z120-9]*[.]{1}[a-zA-Z]*$/.test(this.state.email)) {
+        if (!/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(this.state.email)) {
             this.setState({ emailErr: true })
-            this.setState({ emailErrMsg: "Enter valid email" })
+            this.setState({ emailErrMsg: "Enter a valid email" })
         }
 
         if (this.state.email.length === 0) {
@@ -89,7 +89,7 @@ class Registration extends React.Component {
             this.setState({ passwordErrMsg: "Enter a password" })
         }
 
-        if (this.state.password != this.state.confirmPassword) {
+        if (this.state.password !== this.state.confirmPassword) {
             this.setState({
                 confirmPasswordErr: true,
                 confirmPasswordErrMsg: "passwords didn't match"
@@ -98,14 +98,31 @@ class Registration extends React.Component {
         }
     }
 
+    checkBox = () => {
+        this.setState({ showPassword: !this.state.showPassword })
+    }
+
     submit = () => {
         this.validationCheck();
+
+        let data = {
+            "firstName": this.state.firstname,
+            "lastName": this.state.lastname,
+            "email": this.state.email,
+            "password": this.state.password
+        }
+        console.log("data is", data);
+
+        service.registration(data).then((result) => {
+            console.log(result);
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 
 
     render() {
         return (
-
             <div className="container">
                 <div className="border">
                     <div className="box">
@@ -145,7 +162,6 @@ class Registration extends React.Component {
                                                 label="Last name"
                                                 variant="outlined"
                                                 fullWidth />
-
                                         </div>
                                     </div>
 
@@ -174,11 +190,11 @@ class Registration extends React.Component {
                                                 onChange={this.handleChange}
                                                 error={this.state.passwordErr}
                                                 helperText={this.state.passwordErrMsg}
-                                                type='password'
+                                                type={this.state.showPassword ? "text" : "password"}
                                                 variant="outlined"
                                                 fullWidth />
-
                                         </div>
+
                                         <div className="input">
                                             <TextField id="outlined"
                                                 size="small"
@@ -187,20 +203,18 @@ class Registration extends React.Component {
                                                 onChange={this.handleChange}
                                                 error={this.state.confirmPasswordErr}
                                                 helperText={this.state.confirmPasswordErrMsg}
-                                                type="password"
+                                                type={this.state.showPassword ? "text" : "password"}
                                                 variant="outlined"
                                                 fullWidth />
                                         </div>
                                     </div>
 
-                                    <span className="checkBox">
+                                    <div className="checkBox" onClick={this.checkBox}>
                                         <Checkbox
                                             color="primary"
-                                            className="check"
-                                        />
+                                            className="check" />
                                             Show Password
-
-                                    </span>
+                                    </div>
 
                                     <div className="footer">
                                         <div className="signIn">
@@ -220,7 +234,7 @@ class Registration extends React.Component {
                                     <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="google" height="225"></img>
                                     <p className="text_field">
                                         One Account. All of Fundoo working for you
-                                        </p>
+                                   </p>
                                 </div>
                             </div>
                         </div>
