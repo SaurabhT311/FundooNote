@@ -2,6 +2,8 @@ import React from 'react';
 import './registration.css';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import Checkbox from '@material-ui/core/Checkbox';
 import Service from '../../services/userService';
 const service = new Service();
@@ -31,8 +33,7 @@ class Registration extends React.Component {
             confirmPasswordErr: false,
             confirmPasswordErrMsg: '',
 
-            showPassword: false
-
+            showPassword: false,
         }
     }
 
@@ -62,31 +63,37 @@ class Registration extends React.Component {
             confirmPasswordErrMsg: ""
         })
 
+        let isError = false
 
         if (this.state.firstname.length === 0) {
             this.setState({ firstnameErr: true })
             this.setState({ firstnameErrMsg: "Enter first name" })
+            isError = true;
         }
 
 
         if (this.state.lastname.length === 0) {
             this.setState({ lastnameErr: true })
             this.setState({ lastnameErrMsg: "Enter last name" })
+            isError = true;
         }
 
         if (!/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(this.state.email)) {
             this.setState({ emailErr: true })
             this.setState({ emailErrMsg: "Enter a valid email" })
+            isError = true;
         }
 
         if (this.state.email.length === 0) {
             this.setState({ emailErr: true })
             this.setState({ emailErrMsg: "Enter email" })
+            isError = true;
         }
 
         if (this.state.password.length === 0) {
             this.setState({ passwordErr: true })
             this.setState({ passwordErrMsg: "Enter a password" })
+            isError = true;
         }
 
         if (this.state.password !== this.state.confirmPassword) {
@@ -94,32 +101,39 @@ class Registration extends React.Component {
                 confirmPasswordErr: true,
                 confirmPasswordErrMsg: "passwords didn't match"
             })
-
+            isError = true;
         }
+        return isError;
     }
 
     checkBox = () => {
         this.setState({ showPassword: !this.state.showPassword })
     }
 
-    submit = () => {
-        this.validationCheck();
+    submit = (e) => {
 
-        let data = {
-            "firstName": this.state.firstname,
-            "lastName": this.state.lastname,
-            "email": this.state.email,
-            "password": this.state.password
+        const check = this.validationCheck();
+        if (!check) {
+            let data = {
+                "firstName": this.state.firstname,
+                "lastName": this.state.lastname,
+                "email": this.state.email,
+                "password": this.state.password
+            }
+            console.log("data is", data);
+            service.registration(data).then((result) => {
+                console.log(result);
+            }).catch((error) => {
+                console.log(error);
+            })
+        } else {
+            console.log("api failed");
         }
-        console.log("data is", data);
-
-        service.registration(data).then((result) => {
-            console.log(result);
-        }).catch((error) => {
-            console.log(error);
-        })
     }
 
+    // Alert = (props) => {
+    //     return <MuiAlert elevation={6} variant="filled" {...props} />;
+    // }
 
     render() {
         return (
@@ -229,7 +243,6 @@ class Registration extends React.Component {
                                         </div>
                                     </div>
                                 </form>
-
                                 <div className="image_field">
                                     <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="google" height="225"></img>
                                     <p className="text_field">
@@ -241,8 +254,10 @@ class Registration extends React.Component {
                     </div>
                 </div>
             </div>
+            
         )
     }
 }
+
 
 export default Registration;

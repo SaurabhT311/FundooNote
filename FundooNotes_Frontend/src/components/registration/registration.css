@@ -1,6 +1,8 @@
 
 .container{
-  margin-top: 45px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;   
@@ -18,7 +20,7 @@
 
   .box{
     display: flex;
-    margin:  40px 0 39px;
+    margin:  35px 0 29px;
     width: 100%;
   }
 

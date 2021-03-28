@@ -52,7 +52,6 @@
       .form_field{
         display: flex;
         flex-direction: column;
-        margin-top: 10px;
       }
   
       .form_input{
@@ -69,17 +68,10 @@
           height: 9.5vh; 
         }
 
-        .forgot{
-          display: flex;
-        }
-
         .footer{
-          display: flex;
-          flex-direction: row;
-          margin-top: 20px;
-          align-items: left;
-          justify-content: space-between;
-    
+            display: flex;
+            justify-content: space-between;
+
         }
 
 

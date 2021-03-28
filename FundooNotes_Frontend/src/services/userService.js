@@ -6,7 +6,14 @@ export default class userService {
      baseurl = "http://localhost:4000"
 
     registration = (data) => {
-        return axios.postMethod(`${this.baseurl}/registration`, data)
-        
+        return axios.postMethod(`${this.baseurl}/registration`, data)  
+    }
+
+    login=(data)=>{
+        return axios.postMethod(`${this.baseurl}/login`,data);
+    }
+
+    forgotPassword=(data)=>{
+        return axios.postMethod(`${this.baseurl}/forgotpassword`,data);
     }
 }
