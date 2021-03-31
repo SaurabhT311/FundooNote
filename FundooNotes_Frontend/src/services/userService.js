@@ -16,4 +16,13 @@ export default class userService {
     forgotPassword=(data)=>{
         return axios.postMethod(`${this.baseurl}/forgotpassword`,data);
     }
+
+    resetPassword=(data,token)=>{
+        return axios.postMethod(`${this.baseurl}/resetpassword/:token`,data,
+        {
+            headers:{
+                token:token
+            }
+        });
+    }
 }

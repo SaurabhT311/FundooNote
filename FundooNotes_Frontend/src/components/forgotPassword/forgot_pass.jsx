@@ -1,8 +1,10 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './forgot_pass.css';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
 import Service from '../../services/userService';
+import { IconButton, Snackbar } from '@material-ui/core';
 const service = new Service();
 
 class ForgotPassword extends React.Component {
@@ -12,8 +14,15 @@ class ForgotPassword extends React.Component {
             email: '',
             emailErr: false,
             emailErrMsg: '',
+
+            // snackbaropen:false,
+            // snakbarMsg:''
         }
     }
+
+    // snackbarClose=(e)=>{
+    //     this.setState({snackbaropen:false});
+    // }
 
     handleChange = (e) => {
         console.log(e.target.value);
@@ -56,8 +65,10 @@ class ForgotPassword extends React.Component {
         
         service.forgotPassword(data).then((result) => {
             console.log(result);
+            // this.setState({snackbaropen:true, snakbarMsg:result});
         }).catch((error) => {
             console.log(error);
+            // this.setState({snackbaropen:true, snakbarMsg:'failed'});
         })
         }
     }
@@ -65,9 +76,26 @@ class ForgotPassword extends React.Component {
 
     render() {
         return (
-            <div className="login_container">
-                <div className="border">
-                    <div className="box">
+            <div className="forgot_container">
+                {/* <Snackbar 
+                anchorOrigin={{vertical:'center',horizontal:'center'}}
+                open={this.state.snackbaropen}
+                autoHideDuration={3000}
+                onClose={this.snackbarClose}
+                message ={<span id="message-id">{this.state.snakbarMsg}</span>}
+                action={[
+                    <IconButton
+                    key="close"
+                    arial-label="Close"
+                    color="inherit"
+                    onClick={this.snackbarClose}>
+                        x
+                    </IconButton>
+
+                ]}
+                /> */}
+                <div className="forgot_border">
+                    <div className="forgot_box">
                         <div className="box_input">
                             <div className="logo">
                                 <font color="#1976d2"><b>F</b></font>
@@ -80,10 +108,10 @@ class ForgotPassword extends React.Component {
                             <div>
                                 <h1 className="h1">Forgot Password</h1>
                             </div>
-                            <div className="form_field">
+                            <div className="forgot_form_field">
                                 <form className="form">
-                                    <div className="form_input">
-                                        <div className="input">
+                                    <div className="forgot_form_input">
+                                        <div className="forgot_input">
                                             <TextField id="outlined"
                                                 size="small"
                                                 label="Usermail"
@@ -99,9 +127,9 @@ class ForgotPassword extends React.Component {
                                     <div className="footer">
                                         <div className="signIn">
                                             <Button color="primary">
-                                                <b>
+                                            <Link to={{pathname:'/login'}}>  <b>
                                                     Login
-                                                    </b>
+                                                    </b></Link>
                                             </Button>
                                         </div>
                                         <div className="button">

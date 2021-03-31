@@ -31,23 +31,28 @@
     
   }
 
-  .logo{
+  .reg_logo{
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     font-size: 22px;
     font-family: roboto,'Noto Sans Myanmar UI',sans-serif,arial;
   }
   
 
-  .h1{
+  .reg_h1{
     display: flex;
     font-size: 20px;
     line-height: 1.3333;
+    justify-content: flex-start;
     font-weight: lighter;
     font-family:'Noto Sans Myanmar UI',sans-serif,arial;
     }
 
-
+    .form{
+      width: 100%;
+    }
+    
     .form_field{
       display: flex;
       flex-direction: row;

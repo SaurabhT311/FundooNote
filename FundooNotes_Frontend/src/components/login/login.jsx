@@ -1,6 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './login.css';
 import TextField from '@material-ui/core/TextField'
+import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Service from '../../services/userService';
 const service = new Service();
@@ -22,7 +24,10 @@ class Login extends React.Component {
     handleChange = (e) => {
         console.log(e.target.value);
         this.setState({ [e.target.name]: e.target.value })
+    }
 
+    checkBox = () => {
+        this.setState({ showPassword: !this.state.showPassword })
     }
 
     validationCheck = () => {
@@ -34,43 +39,44 @@ class Login extends React.Component {
             passwordErrMsg: ""
         })
 
-        let isError=false;
+        let isError = false;
 
         if (!/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(this.state.email)) {
             this.setState({ emailErr: true })
             this.setState({ emailErrMsg: "Enter a valid email" })
-            isError=true;
+            isError = true;
         }
 
         if (this.state.email.length === 0) {
             this.setState({ emailErr: true })
             this.setState({ emailErrMsg: "Enter email" })
-            isError=true;
+            isError = true;
         }
 
         if (this.state.password.length === 0) {
             this.setState({ passwordErr: true })
             this.setState({ passwordErrMsg: "Enter a password" })
-            isError=true;
+            isError = true;
         }
         return isError;
     }
 
 
     submit = () => {
-      const check=  this.validationCheck();
-        if(!check){
-        let data = {
-            "email": this.state.email,
-            "password": this.state.password
-        }
-        console.log("data is", data);
-        
-        service.login(data).then((result) => {
-            console.log(result);
-        }).catch((error) => {
-            console.log(error);
-        })
+        const check = this.validationCheck();
+        if (!check) {
+            let data = {
+                "email": this.state.email,
+                "password": this.state.password
+            }
+            console.log("data is", data);
+
+            service.login(data).then((result) => {
+
+                console.log("result is:",result);
+            }).catch((error) => {
+                console.log(error);
+            })
         }
     }
 
@@ -78,9 +84,9 @@ class Login extends React.Component {
     render() {
         return (
             <div className="login_container">
-                <div className="border">
-                    <div className="box">
-                        <div className="box_input">
+                <div className="borders">
+                    <div className="box_field">
+                        <div className="box_Input">
                             <div className="logo">
                                 <font color="#1976d2"><b>F</b></font>
                                 <font color="#FF0000"><b>u</b></font>
@@ -93,10 +99,10 @@ class Login extends React.Component {
                                 <h1 className="h1">Sign In</h1>
                                 <h1 className="h1">Use Your Fundoo Account</h1>
                             </div>
-                            <div className="form_field">
+                            <div className="form_Field">
                                 <form className="form">
-                                    <div className="form_input">
-                                        <div className="input">
+                                    <div className="form_Input">
+                                        <div className="input_field">
                                             <TextField id="outlined"
                                                 size="small"
                                                 label="Usermail"
@@ -108,7 +114,7 @@ class Login extends React.Component {
                                                 fullWidth />
                                         </div>
 
-                                        <div className="input">
+                                        <div className="input_field">
                                             <TextField id="outlined"
                                                 size="small"
                                                 label="Password"
@@ -116,25 +122,33 @@ class Login extends React.Component {
                                                 onChange={this.handleChange}
                                                 error={this.state.passwordErr}
                                                 helperText={this.state.passwordErrMsg}
-                                                type="password"
+                                                type={this.state.showPassword ? "text" : "password"}
                                                 variant="outlined"
                                                 fullWidth />
                                         </div>
                                     </div>
 
+                                    <div className="checkBox" onClick={this.checkBox}>
+                                        <Checkbox
+                                            color="primary"
+                                            className="check" />
+                                            Show Password
+                                    </div>
+
                                     <div className="forgot">
                                         <Button color="primary">
-                                                <b>
-                                                    Forgot Password
-                                                    </b>
-                                            </Button>
-                                            </div>
+                                        <Link to={{ pathname: '/forgotpassword' }}> <b>
+                                                Forgot Password
+                                                    </b></Link>
+                                        </Button>
+                                    </div>
+
                                     <div className="footer">
                                         <div className="signIn">
                                             <Button color="primary">
-                                                <b>
+                                                <Link to={{ pathname: '/registration' }}><b>
                                                     Create Account
-                                                    </b>
+                                                    </b> </Link>
                                             </Button>
                                         </div>
                                         <div className="button">

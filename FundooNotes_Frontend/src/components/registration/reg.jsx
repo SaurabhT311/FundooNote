@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import './registration.css';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
@@ -142,7 +141,7 @@ class Registration extends React.Component {
                 <div className="border">
                     <div className="box">
                         <div className="box_input">
-                            <div className="reg_logo">
+                            <div className="logo">
                                 <font color="#1976d2"><b>F</b></font>
                                 <font color="#FF0000"><b>u</b></font>
                                 <font color="#FFD700"><b>n</b></font>
@@ -150,7 +149,7 @@ class Registration extends React.Component {
                                 <font color="#FF0000 "><b>o</b></font>
                                 <font color="#006400"><b>o</b></font>
                             </div>
-                            <h1 className="reg_h1">Create your Fundoo Account</h1>
+                            <h1 className="h1">Create your Fundoo Account</h1>
                             <div className="form_field">
                                 <form className="form">
                                     <div className="form_input">
@@ -234,9 +233,9 @@ class Registration extends React.Component {
                                     <div className="footer">
                                         <div className="signIn">
                                             <Button color="primary">
-                                            <Link to={{ pathname: '/login' }}> <b>
+                                                <b>
                                                     Sign in instead
-                                                    </b></Link>
+                                                    </b>
                                             </Button>
                                         </div>
                                         <div className="button">
