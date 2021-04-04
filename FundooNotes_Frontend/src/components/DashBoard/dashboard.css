@@ -49,6 +49,12 @@
     margin-top: 60px;
 }
 
+
+.drawer_icon{
+    color: #606060;
+    font-size: large !important;
+}
+
 .drawerButton{
     margin: 7px 0 8px 0;
 }
@@ -57,7 +63,11 @@
     background-color: rgb(236, 236, 236);
     border-top-right-radius: 80px;
     border-bottom-right-radius: 80px;
+}
 
+.drawerButton:hover> .drawer_icon{
+    font-weight: bold;
+    color: black;
 }
 
 @media only screen and (max-width: 800px){

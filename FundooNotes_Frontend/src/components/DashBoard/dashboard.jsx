@@ -1,97 +1,3 @@
-// import React from 'react';
-// import { useState } from 'react'
-// import './dashboard.css';
-// import MenuIcon from "@material-ui/icons/Menu";
-
-
-// export default function MiniDrawer() {
-
-//   const [isOpened, setIsOpened] = useState(false);
-
-//   return (
-//     <div className="dash_container">
-//       <div className="header">
-//       <div className="icon" onClick={() => setIsOpened(!isOpened)}>
-//           {isOpened ? <MenuIcon/> : <MenuIcon />}
-
-//           </div>
-//         <div className="header-title">
-//         <img
-//                className="header__logo"
-//                src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
-//                alt=""
-//              />
-//              <div className="header__logo">Fundoo</div>
-
-//         </div>
-
-//       </div>
-//       <div className="dash_box">
-//         {/* <div className="drawer">Drawer</div> */}
-//         <aside className={`${isOpened ? "opened" : ""} drawer`}>Drawer</aside>
-//         <div className="main">Content</div>
-//       </div>
-//     </div>
-//   );
-
-// }
-
-
-
-
-
-
-
-// // // import React from 'react';
-// // // import './dashboard.css';
-// // // import MenuIcon from "@material-ui/icons/Menu";
-// // // import SearchIcon from "@material-ui/icons/Search";
-// // // import Avatar from "@material-ui/core/Avatar";
-
-
-
-// // // export default function MiniDrawer() {
-// // //   return (
-// // //     <div className="dash_container">
-// // //       <div className="dash_border">
-// // //         <div className="header">
-// // //           <div className="header__left">
-// // //             <MenuIcon className="menu" />
-// // //             <img
-// // //               className="header__logo"
-// // //               src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
-// // //               alt=""
-// // //             />
-// // //           </div>
-
-// // //           <div className="header__input">
-
-// // //             <SearchIcon className="header__inputButton" />
-// // //             <input placeholder="Search" type="text" />
-
-
-// // //           </div>
-
-// // //           <div className="header__icons">
-// // //             <Avatar
-// // //               alt="Remy Sharp"
-// // //               src="/static/images/avatar/1.jpg"
-
-// // //             />
-// // //           </div>
-// // //         </div>
-// // //       </div>
-// // //     </div>
-// // //   )
-// // // }
-
-
-
-
-
-
-
-
 import React from 'react';
 import clsx from 'clsx';
 import './dashboard.css';
@@ -107,8 +13,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SearchIcon from "@material-ui/icons/Search";
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
@@ -174,6 +78,8 @@ export default function MiniDrawer() {
   const [note, setNote] = React.useState(true);
   const [reminder, setReminder] = React.useState(false);
   const [editLabel, setEditLabel] = React.useState(false);
+  const [archive, setArchive] = React.useState(false)
+  const [bin, setBin] = React.useState(false)
 
   const drawerOpen = () => {
     setOpen(true);
@@ -186,6 +92,7 @@ export default function MiniDrawer() {
   const drawerOpenClose = () => {
     setOpen(!open);
   }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -218,9 +125,10 @@ export default function MiniDrawer() {
             <SearchIcon className="header__inputButton" />
             <input placeholder="Search" type="text" />
           </div>
+
+
         </Toolbar>
       </AppBar>
-
 
       <Drawer
         variant="permanent"
@@ -287,22 +195,41 @@ export default function MiniDrawer() {
             </div>
 
 
-
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+            <div className="drawerButton">
+              <ListItem
+                button
+                className={classes.drawerButton}
+                style={{ backgroundColor: archive ? "#feefc3" : "transparent" }}>
+                <ListItemIcon>
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"></path>
+                  </svg>
+                </ListItemIcon>
+                <ListItemText primary="Archive" />
               </ListItem>
-            ))}
+            </div>
+
+
+            <div className="drawerButton">
+              <ListItem
+                button
+                className={classes.drawerButton}
+                style={{ backgroundColor: bin ? "#feefc3" : "transparent" }}>
+                <ListItemIcon className="drawer_icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                    <path d=" M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>
+                  </svg>
+                </ListItemIcon>
+                <ListItemText primary="Bin" />
+              </ListItem>
+            </div>
+
           </List>
         </div>
 
       </Drawer>
       <div>
-        {/* <h1>hello</h1> */}
       </div>
     </div>
-    
-
   );
 }
