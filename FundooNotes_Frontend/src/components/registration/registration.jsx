@@ -1,14 +1,17 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './registration.css';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
-// import Snackbar from '@material-ui/core/Snackbar';
-// import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import Checkbox from '@material-ui/core/Checkbox';
 import Service from '../../services/userService';
 const service = new Service();
 
+function Alert(props) {
+    return <MuiAlert variant="filled" {...props} />
+}
 
 class Registration extends React.Component {
     constructor(props) {
@@ -35,9 +38,13 @@ class Registration extends React.Component {
             confirmPasswordErrMsg: '',
 
             showPassword: false,
+
+            snackbarMsg: '',
+            snackType: '',
+            open: false,
+
         }
     }
-
 
     handleChange = (e) => {
         console.log(e.target.value);
@@ -65,6 +72,7 @@ class Registration extends React.Component {
         })
 
         let isError = false
+        
 
         if (this.state.firstname.length === 0) {
             this.setState({ firstnameErr: true })
@@ -89,6 +97,12 @@ class Registration extends React.Component {
             this.setState({ emailErr: true })
             this.setState({ emailErrMsg: "Enter email" })
             isError = true;
+        }
+
+        if(!/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{4,}$/.test(this.state.password)){
+            this.setState({ passwordErr: true })
+            this.setState({ passwordErrMsg: "Please enter valid password" })
+            isError=true;
         }
 
         if (this.state.password.length === 0) {
@@ -124,17 +138,17 @@ class Registration extends React.Component {
             console.log("data is", data);
             service.registration(data).then((result) => {
                 console.log(result);
+                this.setState({ snackType: "success", snackbarMsg: "Registration successfull", open: true });
+
             }).catch((error) => {
                 console.log(error);
+                this.setState({ snackType: "error", snackbarMsg: error.response.data.message, open: true });
             })
         } else {
             console.log("api failed");
+            this.setState({ snackType: "error", snackbarMsg: "Registration Failed", open: true });
         }
     }
-
-    // Alert = (props) => {
-    //     return <MuiAlert elevation={6} variant="filled" {...props} />;
-    // }
 
     render() {
         return (
@@ -234,7 +248,7 @@ class Registration extends React.Component {
                                     <div className="footer">
                                         <div className="signIn">
                                             <Button color="primary">
-                                            <Link to={{ pathname: '/login' }}> <b>
+                                                <Link to={{ pathname: '/login' }}> <b>
                                                     Sign in instead
                                                     </b></Link>
                                             </Button>
@@ -254,8 +268,13 @@ class Registration extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Snackbar open={this.state.open}>
+                    <Alert severity={this.state.snackType}>
+                        {this.state.snackbarMsg}
+                    </Alert>
+                </Snackbar>
             </div>
-            
+
         )
     }
 }

@@ -1,11 +1,16 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './forgot_pass.css';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
 import Service from '../../services/userService';
-import { IconButton, Snackbar } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 const service = new Service();
+
+function Alert(props) {
+    return <MuiAlert variant="filled" {...props} />
+}
 
 class ForgotPassword extends React.Component {
     constructor(props) {
@@ -15,14 +20,11 @@ class ForgotPassword extends React.Component {
             emailErr: false,
             emailErrMsg: '',
 
-            // snackbaropen:false,
-            // snakbarMsg:''
+            snackbarMsg: '',
+            snackType: '',
+            open: false,
         }
     }
-
-    // snackbarClose=(e)=>{
-    //     this.setState({snackbaropen:false});
-    // }
 
     handleChange = (e) => {
         console.log(e.target.value);
@@ -37,18 +39,18 @@ class ForgotPassword extends React.Component {
 
         })
 
-        let isError=false;
+        let isError = false;
 
         if (!/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(this.state.email)) {
             this.setState({ emailErr: true })
             this.setState({ emailErrMsg: "Enter a valid email" })
-            isError=true;
+            isError = true;
         }
 
         if (this.state.email.length === 0) {
             this.setState({ emailErr: true })
             this.setState({ emailErrMsg: "Enter email" })
-            isError=true;
+            isError = true;
 
         }
         return isError;
@@ -56,20 +58,24 @@ class ForgotPassword extends React.Component {
 
 
     submit = () => {
-      let check=  this.validationCheck();
-        if(!check){
-        let data = {
-            "email": this.state.email,
+        let check = this.validationCheck();
+        if (!check) {
+            let data = {
+                "email": this.state.email,
+            }
+            console.log("data is", data);
+
+            service.forgotPassword(data).then((result) => {
+                console.log(result);
+                this.setState({ snackType: "success", snackbarMsg: "Please check your mail", open: true });
+            }).catch((error) => {
+                console.log(error);
+                this.setState({ snackType: "error", snackbarMsg: error.response.data.message , open: true });
+            })
         }
-        console.log("data is", data);
-        
-        service.forgotPassword(data).then((result) => {
-            console.log(result);
-            // this.setState({snackbaropen:true, snakbarMsg:result});
-        }).catch((error) => {
-            console.log(error);
-            // this.setState({snackbaropen:true, snakbarMsg:'failed'});
-        })
+        else{
+            console.log("api failed");
+            this.setState({ snackType: "error", snackbarMsg: "Something went wrong", open: true });
         }
     }
 
@@ -77,23 +83,6 @@ class ForgotPassword extends React.Component {
     render() {
         return (
             <div className="forgot_container">
-                {/* <Snackbar 
-                anchorOrigin={{vertical:'center',horizontal:'center'}}
-                open={this.state.snackbaropen}
-                autoHideDuration={3000}
-                onClose={this.snackbarClose}
-                message ={<span id="message-id">{this.state.snakbarMsg}</span>}
-                action={[
-                    <IconButton
-                    key="close"
-                    arial-label="Close"
-                    color="inherit"
-                    onClick={this.snackbarClose}>
-                        x
-                    </IconButton>
-
-                ]}
-                /> */}
                 <div className="forgot_border">
                     <div className="forgot_box">
                         <div className="box_input">
@@ -127,7 +116,7 @@ class ForgotPassword extends React.Component {
                                     <div className="footer">
                                         <div className="signIn">
                                             <Button color="primary">
-                                            <Link to={{pathname:'/login'}}>  <b>
+                                                <Link to={{ pathname: '/login' }}>  <b>
                                                     Login
                                                     </b></Link>
                                             </Button>
@@ -141,6 +130,11 @@ class ForgotPassword extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Snackbar autoHideDuration={2000} open={this.state.open}>
+                    <Alert severity={this.state.snackType}>
+                        {this.state.snackbarMsg}
+                    </Alert>
+                </Snackbar>
             </div>
         )
     }

@@ -1,0 +1,71 @@
+.header__title{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;  
+    font-size: x-large;
+    color:  #5f6368; 
+    justify-content: space-between;
+}
+
+.header__logo{
+    display: flex;
+    flex-direction: row;
+}
+
+.header__input{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    height: 46px;
+    margin-left: 5%;
+    background-color: rgb(238, 238, 238);
+    border-radius: 8px;    
+}
+
+.header__inputButton{
+    color: gray;
+     align-items: center; 
+    margin: 10px;
+    cursor: pointer;
+}
+
+.header__inputButton:hover{
+    display: flex;
+    color: lightgray;
+}
+
+.header__input > input{
+     flex: 1px;
+     border: none; 
+     background-color: rgb(238, 238, 238);
+     font: normal 16px Google Sans,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+     height: 40px;
+     outline: none;
+     box-sizing: border-box;
+}
+
+.Drawer{
+    margin-top: 60px;
+}
+
+.drawerButton{
+    margin: 7px 0 8px 0;
+}
+
+.drawerButton:hover{
+    background-color: rgb(236, 236, 236);
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+
+}
+
+@media only screen and (max-width: 800px){
+    .headerTitle {
+        margin: 1%;
+        font-size: 1.1em;
+    }
+    .headerIcon {
+        width: 30px;
+    }
+}

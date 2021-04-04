@@ -1,18 +1,21 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './reset_pass.css';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
-
 import Service from '../../services/userService';
 import Checkbox from '@material-ui/core/Checkbox';
-import { IconButton, Snackbar } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 const service = new Service();
 
+function Alert(props) {
+    return <MuiAlert variant="filled" {...props} />
+}
+
 class ResetPassword extends React.Component {
-    constructor(props,{match}) {
+    constructor(props) {
         super(props)
-        
         this.state = {
             password: '',
             passwordErr: false,
@@ -22,22 +25,18 @@ class ResetPassword extends React.Component {
             confirmPasswordErr: false,
             confirmPasswordErrMsg: '',
 
-            
             showPassword: false,
 
-            // snackbaropen:false,
-            // snakbarMsg:''
+            snackbarMsg: '',
+            snackType: '',
+            open: false
+
         }
     }
-
-    // snackbarClose=(e)=>{
-    //     this.setState({snackbaropen:false});
-    // }
 
     handleChange = (e) => {
         console.log(e.target.value);
         this.setState({ [e.target.name]: e.target.value })
-
     }
 
     validationCheck = () => {
@@ -50,7 +49,14 @@ class ResetPassword extends React.Component {
 
         })
 
-        let isError=false;
+        let isError = false;
+        
+        if(!/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,16}$/.test(this.state.password)){
+            this.setState({ passwordErr: true })
+            this.setState({ passwordErrMsg: "Please enter valid password" })
+            isError=true;
+        }
+
         if (this.state.password.length === 0) {
             this.setState({ passwordErr: true })
             this.setState({ passwordErrMsg: "Enter a password" })
@@ -64,7 +70,6 @@ class ResetPassword extends React.Component {
             })
             isError = true;
         }
-        
         return isError;
     }
 
@@ -74,46 +79,30 @@ class ResetPassword extends React.Component {
 
 
     submit = () => {
-      let check=  this.validationCheck();
-        if(!check){
-        let data = {
-            "password": this.state.password,
-            "confirmPassword":this.state.confirmPassword
-        }
-        console.log("data is", data);
-        console.log("props is:",this.props)
-        let token=this.props.match.params.token;
-        console.log("token is:",token);
-        service.resetPassword(data,token).then((result) => {
-            console.log("result is:",result)
-        }).catch((error) => {
-            console.log(error);
+        let check = this.validationCheck();
         
-        })
+        if (!check) {
+            let data = {
+                "password": this.state.password,
+                "confirmPassword": this.state.confirmPassword
+            }
+            // console.log("data is", data);
+            let token = this.props.match.params.token;
+            service.resetPassword(data, token).then((result) => {
+                console.log("result is:", result)
+                this.setState({ snackType: "success", snackbarMsg: "Password changed successfully", open: true });
+            }).catch((error) => {
+                console.log(error);
+                this.setState({ snackType: "error", snackbarMsg: error.response.data.message, open: true });
+            })
+        }else{
+            this.setState({ snackType: "error", snackbarMsg: "Something went wrong", open: true })
         }
     }
-
 
     render() {
         return (
             <div className="login_container">
-                {/* <Snackbar 
-                anchorOrigin={{vertical:'center',horizontal:'center'}}
-                open={this.state.snackbaropen}
-                autoHideDuration={3000}
-                onClose={this.snackbarClose}
-                message ={<span id="message-id">{this.state.snakbarMsg}</span>}
-                action={[
-                    <IconButton
-                    key="close"
-                    arial-label="Close"
-                    color="inherit"
-                    onClick={this.snackbarClose}>
-                        x
-                    </IconButton>
-
-                ]}
-                /> */}
                 <div className="reset_border">
                     <div className="reset_box">
                         <div className="reset_box_input">
@@ -130,7 +119,7 @@ class ResetPassword extends React.Component {
                             </div>
                             <div className="reset_form_field">
                                 <form className="reset_form">
-                                <div className="reset_form_input">
+                                    <div className="reset_form_input">
                                         <div className="reset_input">
                                             <TextField id="outlined"
                                                 size="small"
@@ -143,11 +132,11 @@ class ResetPassword extends React.Component {
                                                 variant="outlined"
                                                 fullWidth />
                                         </div>
-                                        </div>
+                                    </div>
 
-                                        <div className="reset_form_input">
+                                    <div className="reset_form_input">
                                         <div className="reset_input">
-                                        <TextField id="outlined"
+                                            <TextField id="outlined"
                                                 size="small"
                                                 label="Confirm Password"
                                                 name="confirmPassword"
@@ -158,9 +147,9 @@ class ResetPassword extends React.Component {
                                                 variant="outlined"
                                                 fullWidth />
                                         </div>
-                                        </div>
+                                    </div>
 
-                                        <div className="checkBox" onClick={this.checkBox}>
+                                    <div className="checkBox" onClick={this.checkBox}>
                                         <Checkbox
                                             color="primary"
                                             className="check" />
@@ -170,7 +159,7 @@ class ResetPassword extends React.Component {
                                     <div className="footer">
                                         <div className="signIn">
                                             <Button color="primary">
-                                               <Link to={{pathname: '/login'}}> <b>
+                                                <Link to={{ pathname: '/login' }}> <b>
                                                     Login
                                                     </b></Link>
                                             </Button>
@@ -184,11 +173,14 @@ class ResetPassword extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Snackbar open={this.state.open}>
+                <Alert severity={this.state.snackType}>
+                    {this.state.snackbarMsg}
+                </Alert>      
+               </Snackbar>
             </div>
         )
     }
-
-
 }
 
 export default ResetPassword;

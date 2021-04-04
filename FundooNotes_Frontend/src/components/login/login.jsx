@@ -4,8 +4,16 @@ import './login.css';
 import TextField from '@material-ui/core/TextField'
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import Service from '../../services/userService';
 const service = new Service();
+
+
+function Alert(props) {
+    return <MuiAlert variant="filled" {...props} />
+}
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -17,7 +25,11 @@ class Login extends React.Component {
 
             password: '',
             passwordErr: false,
-            passwordErrMsg: ''
+            passwordErrMsg: '',
+
+            snackbarMsg: '',
+            snackType: '',
+            open: false,
         }
     }
 
@@ -72,11 +84,18 @@ class Login extends React.Component {
             console.log("data is", data);
 
             service.login(data).then((result) => {
-
                 console.log("result is:",result);
+                this.setState({ snackType: "success", snackbarMsg: "Login successfull", open: true });
             }).catch((error) => {
-                console.log(error);
+                console.log("error is:",error);
+                // console.log("error is:", error.response);
+                this.setState({ snackType: "error", snackbarMsg: error.response.data.message , open: true });
+                
             })
+        }
+        else{
+            console.log("api failed");
+            this.setState({ snackType: "error", snackbarMsg: "Login Failed", open: true });
         }
     }
 
@@ -161,6 +180,11 @@ class Login extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Snackbar open={this.state.open}>
+                    <Alert severity={this.state.snackType}>
+                        {this.state.snackbarMsg}
+                    </Alert>
+                </Snackbar>
             </div>
         )
     }
