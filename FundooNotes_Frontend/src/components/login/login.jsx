@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './login.css';
 import TextField from '@material-ui/core/TextField'
 import Checkbox from '@material-ui/core/Checkbox';
@@ -42,6 +42,10 @@ class Login extends React.Component {
         this.setState({ showPassword: !this.state.showPassword })
     }
 
+    nextPath(path){
+        this.props.history.push(path);
+    }
+
     validationCheck = () => {
         this.setState({
             emailErr: false,
@@ -81,19 +85,26 @@ class Login extends React.Component {
                 "email": this.state.email,
                 "password": this.state.password
             }
-            console.log("data is", data);
 
             service.login(data).then((result) => {
-                console.log("result is:",result);
+                console.log("result is:", result);
+                localStorage.setItem("FirstName", result.data.data.firstName);
+                localStorage.setItem("LastName", result.data.data.lastName);
+                localStorage.setItem("email", result.data.data.email);
+                localStorage.setItem("token", result.data.data.token);
                 this.setState({ snackType: "success", snackbarMsg: "Login successfull", open: true });
+                setTimeout(() => {
+                    this.nextPath('../dashboard');
+                },
+                    1500);
+
             }).catch((error) => {
-                console.log("error is:",error);
-                // console.log("error is:", error.response);
-                this.setState({ snackType: "error", snackbarMsg: error.response.data.message , open: true });
-                
+                console.log("error is:", error);
+                this.setState({ snackType: "error", snackbarMsg: error.response.data.message, open: true });
+
             })
         }
-        else{
+        else {
             console.log("api failed");
             this.setState({ snackType: "error", snackbarMsg: "Login Failed", open: true });
         }
@@ -121,7 +132,7 @@ class Login extends React.Component {
                             <div className="form_Field">
                                 <form className="form">
                                     <div className="form_Input">
-                                        <div className="input_field">
+                                        <div className="input_field1">
                                             <TextField id="outlined"
                                                 size="small"
                                                 label="Usermail"
@@ -133,7 +144,7 @@ class Login extends React.Component {
                                                 fullWidth />
                                         </div>
 
-                                        <div className="input_field">
+                                        <div className="input_field1">
                                             <TextField id="outlined"
                                                 size="small"
                                                 label="Password"
@@ -156,7 +167,7 @@ class Login extends React.Component {
 
                                     <div className="forgot">
                                         <Button color="primary">
-                                        <Link to={{ pathname: '/forgotpassword' }}> <b>
+                                            <Link to={{ pathname: '/forgotpassword' }}> <b>
                                                 Forgot Password
                                                     </b></Link>
                                         </Button>
@@ -171,7 +182,8 @@ class Login extends React.Component {
                                             </Button>
                                         </div>
                                         <div className="button">
-                                            <Button variant="contained" color="primary" onClick={this.submit}>Submit</Button>
+                                            <Button variant="contained" color="primary" onClick={this.submit}>
+                                                Submit </Button>
                                         </div>
 
                                     </div>

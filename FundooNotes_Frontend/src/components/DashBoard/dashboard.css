@@ -1,21 +1,35 @@
-.header__title{
+.appBar{
     display: flex;
-    flex-direction: row;
-    margin: 10px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;  
-    font-size: x-large;
-    color:  #5f6368; 
+    justify-content: space-between;
+}
+
+.leftHeader{
+    width: 80%;
+    display: flex;
+    justify-self: start;
     justify-content: space-between;
 }
 
 .header__logo{
     display: flex;
     flex-direction: row;
+    width: 40px;
+    height: 40px;   
+}
+
+.header__title{
+    display: flex;
+    font-family: Roboto, "Helvetica", "Arial", sans-serif; 
+    font-size: x-large;
+    color:  #5f6368; 
+    align-items: center;
 }
 
 .header__input{
     display: flex;
-    width: 50%;
+    flex-direction: row;
+    flex: 1;
+    width: 65%;
     align-items: center;
     height: 46px;
     margin-left: 5%;
@@ -28,6 +42,8 @@
      align-items: center; 
     margin: 10px;
     cursor: pointer;
+    
+    
 }
 
 .header__inputButton:hover{
@@ -36,8 +52,9 @@
 }
 
 .header__input > input{
-     flex: 1px;
      border: none; 
+     width: 700px;
+     border-radius: 8px;
      background-color: rgb(238, 238, 238);
      font: normal 16px Google Sans,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
      height: 40px;
@@ -45,18 +62,23 @@
      box-sizing: border-box;
 }
 
+  .rightHeader{
+    display: flex;
+    margin-left: 50%;
+ } 
+ 
+.avatar{
+    display: flex;
+}
+
 .Drawer{
     margin-top: 60px;
 }
 
 
-.drawer_icon{
-    color: #606060;
-    font-size: large !important;
-}
-
 .drawerButton{
     margin: 7px 0 8px 0;
+    
 }
 
 .drawerButton:hover{
@@ -65,17 +87,47 @@
     border-bottom-right-radius: 80px;
 }
 
-.drawerButton:hover> .drawer_icon{
-    font-weight: bold;
-    color: black;
+.paper{
+    display: flex;
 }
 
-@media only screen and (max-width: 800px){
-    .headerTitle {
-        margin: 1%;
-        font-size: 1.1em;
+.profile_handle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin: 0 10px 0px 12px ; */
+}
+
+
+@media only screen and (max-width: 500px){
+
+    .appBar{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
     }
-    .headerIcon {
-        width: 30px;
+     .header__title {
+        margin: 1%;
+        font-size: large;
+     }
+
+    .header__logo {
+        margin-top: 10px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .header__input{
+        display: flex;
+        margin: 2%;
+    }
+
+    .header__input > input{
+        display: flex;
+        width: 80px;
+    }
+
+    .rightHeader{
+        margin-left: 8%;
     }
 }

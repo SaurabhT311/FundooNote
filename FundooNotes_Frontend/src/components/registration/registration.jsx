@@ -52,6 +52,10 @@ class Registration extends React.Component {
 
     }
 
+    nextPath(path) {
+        this.props.history.push(path);
+    }
+
     validationCheck = () => {
 
         this.setState({
@@ -72,7 +76,7 @@ class Registration extends React.Component {
         })
 
         let isError = false
-        
+
 
         if (this.state.firstname.length === 0) {
             this.setState({ firstnameErr: true })
@@ -99,10 +103,10 @@ class Registration extends React.Component {
             isError = true;
         }
 
-        if(!/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{4,}$/.test(this.state.password)){
+        if (!/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{4,}$/.test(this.state.password)) {
             this.setState({ passwordErr: true })
             this.setState({ passwordErrMsg: "Please enter valid password" })
-            isError=true;
+            isError = true;
         }
 
         if (this.state.password.length === 0) {
@@ -135,7 +139,6 @@ class Registration extends React.Component {
                 "email": this.state.email,
                 "password": this.state.password
             }
-            console.log("data is", data);
             service.registration(data).then((result) => {
                 console.log(result);
                 this.setState({ snackType: "success", snackbarMsg: "Registration successfull", open: true });
@@ -247,10 +250,10 @@ class Registration extends React.Component {
 
                                     <div className="footer">
                                         <div className="signIn">
-                                            <Button color="primary">
-                                                <Link to={{ pathname: '/login' }}> <b>
+                                            <Button color="primary"
+                                                onClick={() => this.nextPath('/login')}><b>
                                                     Sign in instead
-                                                    </b></Link>
+                                                    </b>
                                             </Button>
                                         </div>
                                         <div className="button">

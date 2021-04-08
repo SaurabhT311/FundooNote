@@ -102,7 +102,7 @@ class ResetPassword extends React.Component {
 
     render() {
         return (
-            <div className="login_container">
+            <div className="reset_container">
                 <div className="reset_border">
                     <div className="reset_box">
                         <div className="reset_box_input">

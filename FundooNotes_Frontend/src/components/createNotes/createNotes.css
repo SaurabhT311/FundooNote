@@ -1,0 +1,129 @@
+
+  .notes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+  }
+  
+  .contain {
+    width: 600px;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: #e0e0e0;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+      0 2px 6px 2px rgba(60, 64, 67, 0.149);
+    font-family: "Roboto", arial, sans-serif;
+    font-size: 15px;
+    margin: 32px auto 16px auto;
+    margin-top: 8em;
+  }
+  
+  .note_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 46px;
+    padding: 12px 16px 12px 16px;
+    margin-top: 8em;
+    margin-left: 190px;
+  }
+  
+  .note {
+    flex-grow: 1;
+    text-align: start;
+  }
+  
+  .container_input {
+    display: flex;
+    flex-direction: column;
+    height: 136px;
+    margin-left: 190px;
+  }
+  
+  .note_title {
+    height: 90px;
+  }
+ 
+  .Input {
+    padding: 10px 15px 25px 15px;
+    height: 24px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    
+  }
+  
+  .title {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .toolbar { 
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .MuiInputBase-input{
+      min-width: none;
+  }
+
+  .optionfield{
+      display: flex;
+      flex-direction: row;
+  }
+  
+  .close-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: 'Google Sans ,Roboto,Arial,sans-serif';
+    margin-left: 12em;
+
+  }
+  
+  @media screen and (max-width: 700px) {
+
+    .notes{
+        display: flex;
+       position: relative;
+    }
+
+    .contain {
+      width: 94%;
+      margin:10px 14px 3px 7px;
+      margin-top: 6em;
+      flex-direction: row;  
+    }
+  
+    .container_input {
+        display: flex;
+        flex-direction: column;
+        height: 180px;
+        margin-left: 10px;
+      }
+
+    .note {
+      align-items: center;
+      
+    }
+    .toolbar {
+      margin-top: 1em;
+    }
+
+    .close-button{
+        display: flex;
+        flex-direction: row;
+        margin-left: -3.5em;
+        margin-top: 35px;
+    }
+
+    .Input{
+        display: flex;
+        flex-direction: row;
+        margin-top: 15px;
+    }
+       
+    }
+  
+  
