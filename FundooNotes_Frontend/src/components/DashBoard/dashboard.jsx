@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import './dashboard.css';
-import Notes from '../createNotes/createNotes';
+import Notes from '../Notes/Notes';
 import { makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -42,8 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 
   handleDrawerOpen: {
-    width: "220px",
-    borderRight: "lightgray solid 1px",
+    width: "230px",
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -118,7 +117,7 @@ export default function MiniDrawer(props) {
 
   const handleLogout=()=>{
     localStorage.clear();
-    nextPath('./login');
+    nextPath('../login');
   }
 
 

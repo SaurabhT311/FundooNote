@@ -11,7 +11,7 @@ import Service from "../../services/noteService";
 
 const service = new Service();
 
-export default function Note(){
+ function CreateNotes(){
     const [open, setOpen] = useState(true);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -21,7 +21,7 @@ export default function Note(){
     };
 
     const submitNote = () => {
-      if(title=='')
+      if(title=='' )
       {
         console.log("Enter data to add");
         setOpen(false);
@@ -41,9 +41,8 @@ export default function Note(){
         }).catch((error)=>{
           console.log("error");
         });
-        setOpen(true); 
       } 
-         
+      setOpen(true);  
     }
 
     return (
@@ -98,6 +97,9 @@ export default function Note(){
         </div>
       );
     };
+
+
+    export default CreateNotes;
     
 
     

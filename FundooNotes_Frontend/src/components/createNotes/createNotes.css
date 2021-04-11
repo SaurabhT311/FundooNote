@@ -19,6 +19,7 @@
     font-size: 15px;
     margin: 32px auto 16px auto;
     margin-top: 8em;
+    word-wrap: break-word;
   }
   
   .note_container {
@@ -34,6 +35,7 @@
   .note {
     flex-grow: 1;
     text-align: start;
+    word-wrap: break-word;
   }
   
   .container_input {
@@ -51,6 +53,7 @@
     padding: 10px 15px 25px 15px;
     height: 24px;
     font-family: Roboto, Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
     
   }
   

@@ -4,10 +4,10 @@ import AddAlertIcon from "@material-ui/icons/AddAlertOutlined";
 import { IconButton } from '@material-ui/core';
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddIcon from "@material-ui/icons/PersonAddOutlined";
-import ColorLensOutlinedIcon from "@material-ui/icons/ColorLensOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ArchiveIcon from '@material-ui/icons/Archive';
 import './iconButtons.css';
+import ColorPalette from './ColorPalette';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
     button: {
         padding: "10px",
     },
-    
-
+ 
 }));
+
 
 function IconButtons() {
     const classes = useStyles();
@@ -27,22 +27,22 @@ function IconButtons() {
         <div className={classes.optionButton}>
             <div className='optionfield'>
                 <IconButton className={classes.button} title="Remind me">
-                    <AddAlertIcon  />
+                    <AddAlertIcon fontSize="small" />
                 </IconButton>
                 <IconButton className={classes.button} title="collaborator">
-                    <PersonAddIcon />
+                    <PersonAddIcon fontSize="small"/>
                 </IconButton>
                 <IconButton className={classes.button} title="change color">
-                    <ColorLensOutlinedIcon />
+                    <ColorPalette />
                 </IconButton>
                 <IconButton className={classes.button} title="Add image">
-                    <ImageOutlinedIcon />
+                    <ImageOutlinedIcon fontSize="small"/>
                 </IconButton>
                 <IconButton className={classes.button} title="Archive">
-                    <ArchiveIcon/>
+                    <ArchiveIcon fontSize="small"/>
                 </IconButton>
-                <IconButton className={classes.button} title="More">
-                    <MoreVertOutlinedIcon />
+                <IconButton className={classes.button}  title="More">
+                    <MoreVertOutlinedIcon fontSize="small" />
                 </IconButton>
 
             </div>
@@ -51,3 +51,9 @@ function IconButtons() {
 }
 
 export default IconButtons;
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+.note_box {
+    width: 250px;
+    min-height: 145px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #d3d3d3 ;
+    border-radius: 8px;
+    margin: 1%;
+}
+
+.option_container {
+    height: 45px;
+}
+
+.input_box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.icon_option {
+    display: none;
+    cursor: pointer;
+}
+
+.note_box:hover .icon_option {
+    display: flex;
+
+}
+
+.displayText {
+    font-size: large;
+    margin: 3px 4px 4px 4px;
+}
+
+.notes_container{
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media only screen and (max-width: 615px) {
+    .note_box {
+        width: 90%;
+        display: flex;
+    }
+    .notes_container{
+        display: flex;
+        flex-flow: wrap;
+        align-items: flex-start;
+        margin-top: 20px;
+        background-color: white;
+    }
+}
