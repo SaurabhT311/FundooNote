@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import './dashboard.css';
 import Notes from '../Notes/Notes';
-import { makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,8 +13,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ProtectedRoutes from '../../protectedRoute';
 import SearchIcon from "@material-ui/icons/Search";
+import ArchiveNotes from '../ArchiveNote/archiveNote';
 import { Avatar, Button, Menu, Paper } from '@material-ui/core';
+import { Switch } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -71,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
   settingMenu: {
     marginTop: theme.spacing(6),
-},
+  },
 
   content: {
     flexGrow: 1,
@@ -103,33 +106,38 @@ export default function MiniDrawer(props) {
     setOpen(!open);
   }
 
-  const nextPath=(path)=>{
+  const nextPath = (path) => {
     props.history.push(path);
   }
 
-  const profileHandlerOpen=(event)=>{
+  const profileHandlerOpen = (event) => {
     setAnchor(event.currentTarget);
   }
 
-  const profileHandlerClose=()=>{
+  const profileHandlerClose = () => {
     setAnchor(null);
   }
 
-  const handleLogout=()=>{
+  const handleLogout = () => {
     localStorage.clear();
     nextPath('../login');
   }
 
+  React.useEffect(() => {
+    noteSelector();
+}, []);
 
-  const noteSelector=()=>{
+
+  const noteSelector = () => {
     setNote(true);
     setReminder(false);
     setEditLabel(false);
     setArchive(false);
     setTrash(false);
+    nextPath('/dashboard/notes')
   }
 
-  const reminderSelector=()=>{
+  const reminderSelector = () => {
     setNote(false);
     setReminder(true);
     setEditLabel(false);
@@ -137,7 +145,7 @@ export default function MiniDrawer(props) {
     setTrash(false);
   }
 
-  const editSelector=()=>{
+  const editSelector = () => {
     setNote(false);
     setReminder(false);
     setEditLabel(true);
@@ -145,15 +153,16 @@ export default function MiniDrawer(props) {
     setTrash(false);
   }
 
-  const archiveSelector=()=>{
+  const archiveSelector = () => {
     setNote(false);
     setReminder(false);
     setEditLabel(false);
     setArchive(true);
     setTrash(false);
+    nextPath("/dashboard/archive");
   }
 
-  const trashSelector=()=>{
+  const trashSelector = () => {
     setNote(false);
     setReminder(false);
     setEditLabel(false);
@@ -163,85 +172,85 @@ export default function MiniDrawer(props) {
 
   return (
     <div className={classes.root}>
-     
+
       <CssBaseline />
       <AppBar
         position="fixed"
         color="white"
-        className={clsx(classes.appBar)}   
+        className={clsx(classes.appBar)}
       >
-         <div className="appBar">
-          
-        <Toolbar>
-        <div className="leftHeader">
-          <IconButton
-            onClick={drawerOpenClose}
-            position="fixed"
-            edge="start"
-          >
-            <MenuIcon />
-          </IconButton>
+        <div className="appBar">
 
-          
-          <div className="header__logo">
-            <img
-              src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
-              alt=""
-            />
-          </div>
+          <Toolbar>
+            <div className="leftHeader">
+              <IconButton
+                onClick={drawerOpenClose}
+                position="fixed"
+                edge="start"
+              >
+                <MenuIcon />
+              </IconButton>
 
 
-          <div className="header__title">Fundoo</div>
-          
-          <div className="header__input">
-            <SearchIcon className="header__inputButton" />
-            <input placeholder="Search" type="text" />
-          </div>
-          </div>
+              <div className="header__logo">
+                <img
+                  src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
+                  alt=""
+                />
+              </div>
 
 
-          <div className="rightHeader">
-          <div >
-            <IconButton onClick={profileHandlerOpen}>
-              <Avatar />
-            </IconButton>
-            <div className="Profile">
-              <div className="profile_container">
-                <Paper className="paper">
-                  <Menu 
-                  className={classes.settingMenu}
-                  anchorEl={anchor}
-                  open={Boolean(anchor)}
-                  onClose={profileHandlerClose} 
-                  >
-                    <div className="profile_handle">
-                      <div className="profile_avatar"><Avatar></Avatar></div>
+              <div className="header__title">Fundoo</div>
 
-                      <div className="profile_handle">
-                          <ListItem>
-                          {localStorage.getItem("FirstName")}
-                          {" "}{localStorage.getItem("LastName")}
-                          </ListItem>
-                      </div>
-
-                        <ListItem>
-                        {localStorage.getItem("email")}
-                        </ListItem>
-                        <div>
-                          <Button variant ="outlined" onClick={handleLogout}>Logout</Button>
-                        </div>
-                      <div>              
-                      </div>
-                    </div>
-                  </Menu>
-                </Paper>
+              <div className="header__input">
+                <SearchIcon className="header__inputButton" />
+                <input placeholder="Search" type="text" />
               </div>
             </div>
-          </div>
-          </div>
-         
-          
-        </Toolbar>
+
+
+            <div className="rightHeader">
+              <div >
+                <IconButton onClick={profileHandlerOpen}>
+                  <Avatar />
+                </IconButton>
+                <div className="Profile">
+                  <div className="profile_container">
+                    <Paper className="paper">
+                      <Menu
+                        className={classes.settingMenu}
+                        anchorEl={anchor}
+                        open={Boolean(anchor)}
+                        onClose={profileHandlerClose}
+                      >
+                        <div className="profile_handle">
+                          <div className="profile_avatar"><Avatar></Avatar></div>
+
+                          <div className="profile_handle">
+                            <ListItem>
+                              {localStorage.getItem("FirstName")}
+                              {" "}{localStorage.getItem("LastName")}
+                            </ListItem>
+                          </div>
+
+                          <ListItem>
+                            {localStorage.getItem("email")}
+                          </ListItem>
+                          <div>
+                            <Button variant="outlined" onClick={handleLogout}>Logout</Button>
+                          </div>
+                          <div>
+                          </div>
+                        </div>
+                      </Menu>
+                    </Paper>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </Toolbar>
         </div>
       </AppBar>
 
@@ -343,9 +352,20 @@ export default function MiniDrawer(props) {
         </div>
 
       </Drawer>
-        <main className="content">
-          <Notes/>
-        </main>
+      <main className="content">
+        <Switch>
+          <ProtectedRoutes path="/dashboard/notes">
+            <Notes />
+          </ProtectedRoutes>
+          <ProtectedRoutes path="/dashboard/archive">
+            <ArchiveNotes />
+          </ProtectedRoutes> 
+          {/* <ProtectedRoutes path="/dashboard/trash">
+            <TrashNotes /> */}
+          {/* </ProtectedRoutes> */}
+         </Switch>
+        {/* <Notes /> */}
+      </main>
       <div>
       </div>
     </div>

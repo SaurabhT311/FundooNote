@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import CreateNotes from "../createNotes/createNotes";
 import DisplayAllNotes from "../displayNotes/displayNotes"
 import Services from "../../services/noteService";
+import ArchiveNote from '../ArchiveNote/archiveNote';
+import TrashNote from '../TrashNotes/TrashNote'
 const service = new Services();
 
 function Notes(props) {
@@ -14,9 +16,9 @@ function Notes(props) {
 
     const getNotes = () => {
         service.getNote().then((result) => {
-            let dataInArray = result.data.data;
+            let dataInArray = result.data.data.filter(result => result.isArchive === false);
             let arr = dataInArray.reverse();
-            console.log(arr);
+            console.log("arr is:",arr);
             setDisplay(arr);
         }).catch((error) => {
             console.log("error");
@@ -24,9 +26,10 @@ function Notes(props) {
     };
     return (
         <div className="mainContent" >
-            <CreateNotes />
+            <CreateNotes get={getNotes} />
             <DisplayAllNotes
                 noteShow={display}
+                get={getNotes}
             />
         </div>
     );
